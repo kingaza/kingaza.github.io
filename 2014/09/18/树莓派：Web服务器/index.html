@@ -4,25 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | Hexo</title>
+    <title>树莓派：Web服务器 | Hexo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="John Doe">
     
 
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+    <meta name="description" content="就性能而言，树莓派不是一个作为Web服务器的优秀选择。事实上，即使WordPress这种个人Blog系统，如果被部署在树莓派上，其访问速度也是稍显缓慢的。但另一方面，当树莓派成为一个Web服务器，用户却可以通过网页访问树莓派，比如：查看摄像头或者控制电器等等。树莓派运行Linux操作系统。一说到Linux Web服务器，人们首先想到的是LAMP组合：Linux+Apache+MySQL+PHP。但">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2015/03/17/hello-world/index.html">
+<meta property="og:title" content="树莓派：Web服务器">
+<meta property="og:url" content="http://yoursite.com/2014/09/18/树莓派：Web服务器/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta property="og:description" content="就性能而言，树莓派不是一个作为Web服务器的优秀选择。事实上，即使WordPress这种个人Blog系统，如果被部署在树莓派上，其访问速度也是稍显缓慢的。但另一方面，当树莓派成为一个Web服务器，用户却可以通过网页访问树莓派，比如：查看摄像头或者控制电器等等。树莓派运行Linux操作系统。一说到Linux Web服务器，人们首先想到的是LAMP组合：Linux+Apache+MySQL+PHP。但">
+<meta property="og:image" content="!--￼0-->image/RPi_11.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="树莓派：Web服务器">
+<meta name="twitter:description" content="就性能而言，树莓派不是一个作为Web服务器的优秀选择。事实上，即使WordPress这种个人Blog系统，如果被部署在树莓派上，其访问速度也是稍显缓慢的。但另一方面，当树莓派成为一个Web服务器，用户却可以通过网页访问树莓派，比如：查看摄像头或者控制电器等等。树莓派运行Linux操作系统。一说到Linux Web服务器，人们首先想到的是LAMP组合：Linux+Apache+MySQL+PHP。但">
 
     
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -81,14 +79,14 @@ Quick">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/03/17/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2014/09/18/树莓派：Web服务器/" title="树莓派：Web服务器" itemprop="url">树莓派：Web服务器</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://yoursite.com/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
 		
   <p class="article-time">
-    <time datetime="2015-03-17T12:48:50.000Z" itemprop="datePublished"> 發表於 2015-03-17</time>
+    <time datetime="2014-09-18T09:44:34.000Z" itemprop="datePublished"> 發表於 2014-09-18</time>
     
   </p>
 </header>
@@ -97,24 +95,38 @@ Quick">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+			
 		
 		</div>
 		
-		<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+		<p>就性能而言，树莓派不是一个作为Web服务器的优秀选择。事实上，即使WordPress这种个人Blog系统，如果被部署在树莓派上，其访问速度也是稍显缓慢的。但另一方面，当树莓派成为一个Web服务器，用户却可以通过网页访问树莓派，比如：查看摄像头或者控制电器等等。<br>树莓派运行Linux操作系统。一说到Linux Web服务器，人们首先想到的是LAMP组合：Linux+Apache+MySQL+PHP。但很多人也证明了，这个组合对于树莓派来说是太重了。因此，更适合的组合应该换成nginx+Sqlite。另外有人尝试了nodejs，似乎也是一个很不错的选择。</p>
+<ol>
+<li><p>nginx<br>安装nginx</p>
+<pre><code>sudo apt-<span class="keyword">get</span> install nginx
+</code></pre><p>启动nginx</p>
+<pre><code>sudo /etc/init.d/nginx <span class="built_in">start</span>
+</code></pre><p>nginx的www根目录默认为/usr/share/nginx/www</p>
+</li>
+<li><p>nodejs<br>安装也很简单</p>
+<pre><code>curl -O www<span class="class">.nodejs</span><span class="class">.org</span>/dist/v0.<span class="number">10.29</span>/node-v0.<span class="number">10.29</span><span class="class">.tar</span><span class="class">.gz</span>
+tar -zxvf node-v0.<span class="number">10.29</span><span class="class">.tar</span><span class="class">.gz</span>
+cd node-v0.<span class="number">10.29</span>
+./configure
+make
+make install
+</code></pre><p>不过得吐槽一下，这个make过程太漫长了，足足用了四个小时。。。orz<br>然后顺手安装了hexo，一个静态页面的blog系统。访问速度嘛，只能说还凑合。。。<br>我做这件事情，主要也是为了试验访问树莓派中的图像数据的情况。结果比较乐观。<br>国外大牛就高大上了：一台树莓派+一个DeviantArt账号=一面动态精美插画墙<br>DeviantArt.com是一个插图社区，Wiebe写了一个脚本，将网站内的图片导入到树莓派内，并且通过显示屏，动态得将图片展示到一面墙上。真服了。<br><img src="!--￼0--&gt;image/RPi_11.jpg" alt="WebServer"> </p>
+</li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/树莓派/">树莓派</a>
+  </div>
 
 </div>
 
@@ -122,7 +134,7 @@ Quick">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/03/17/hello-world/" data-title="Hello World | Hexo" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2014/09/18/树莓派：Web服务器/" data-title="树莓派：Web服务器 | Hexo" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -133,6 +145,27 @@ Quick">
    	       
 	</article>
 	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/09/18/树莓派：NAS/" title="树莓派：NAS">
+  <strong>上一篇：</strong><br/>
+  <span>
+  树莓派：NAS</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/09/18/树莓派：编程语言/"  title="树莓派：编程语言">
+ <strong>下一篇：</strong><br/> 
+ <span>树莓派：编程语言
+</span>
+</a>
+</div>
+
+</nav>
+
 	
 
 </div>  
@@ -141,7 +174,7 @@ Quick">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+ 
  
   </div>
 
@@ -152,6 +185,17 @@ Quick">
   
 
   
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/树莓派/" title="树莓派">树莓派<sup>8</sup></a></li>
+			
+		
+		</ul>
+</div>
+
 
   <div class="linkslist">
   <p class="asidetitle">友情鏈接</p>

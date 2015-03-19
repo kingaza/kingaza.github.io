@@ -1,0 +1,412 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>树莓派：初见 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="John Doe">
+    
+
+    
+    <meta name="description" content="前言最早是在csdn上的一篇文章《三大主流开源硬件对比：Arduino vs BeagleBone vs Raspberry Pi》， 知道了这个神奇的东西，惊喜的发现一个这么小的东西居然有这么强大的功能，CPU、GPU、网络一应俱全，简直就是一台电脑了。后来跟同学聊天，得知他打算用Arduino做运动导轨，于是萌发了涉及硬件的想法，而且好歹俺也是电子出身的，不能忘本。刚好近期项目中软硬件联调频繁">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派：初见">
+<meta property="og:url" content="http://yoursite.com/2014/09/18/树莓派：初见/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言最早是在csdn上的一篇文章《三大主流开源硬件对比：Arduino vs BeagleBone vs Raspberry Pi》， 知道了这个神奇的东西，惊喜的发现一个这么小的东西居然有这么强大的功能，CPU、GPU、网络一应俱全，简直就是一台电脑了。后来跟同学聊天，得知他打算用Arduino做运动导轨，于是萌发了涉及硬件的想法，而且好歹俺也是电子出身的，不能忘本。刚好近期项目中软硬件联调频繁">
+<meta property="og:image" content="!--￼0-->image/RPi_01.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树莓派：初见">
+<meta name="twitter:description" content="前言最早是在csdn上的一篇文章《三大主流开源硬件对比：Arduino vs BeagleBone vs Raspberry Pi》， 知道了这个神奇的东西，惊喜的发现一个这么小的东西居然有这么强大的功能，CPU、GPU、网络一应俱全，简直就是一台电脑了。后来跟同学聊天，得知他打算用Arduino做运动导轨，于是萌发了涉及硬件的想法，而且好歹俺也是电子出身的，不能忘本。刚好近期项目中软硬件联调频繁">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Hexo" title="Hexo"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hexo">Hexo</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/18/树莓派：初见/" title="树莓派：初见" itemprop="url">树莓派：初见</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
+  <p class="article-time">
+    <time datetime="2014-09-18T09:36:19.000Z" itemprop="datePublished"> 發表於 2014-09-18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			
+		
+		</div>
+		
+		<p><img src="!--￼0--&gt;image/RPi_01.jpg" alt="RaspberryPi"> </p>
+<ol>
+<li><p>前言<br>最早是在csdn上的一篇文章《三大主流开源硬件对比：Arduino vs BeagleBone vs Raspberry Pi》， 知道了这个神奇的东西，惊喜的发现一个这么小的东西居然有这么强大的功能，CPU、GPU、网络一应俱全，简直就是一台电脑了。后来跟同学聊天，得知他打算用Arduino做运动导轨，于是萌发了涉及硬件的想法，而且好歹俺也是电子出身的，不能忘本。刚好近期项目中软硬件联调频繁，I2C、SPI什么的多少了解了一点。项目情况不太好，大伙儿经常加班却依然进展迟滞，于是自己就琢磨着做点好玩的东西，免得对技术开发失去兴趣（=_=!），于是冒出一个实现家庭监控系统的想法。<br>基于视频监控的需求，Arduino立马就被排除掉了。至于后两者，我觉得树莓派的社区更加活跃，资源更丰富。至少到目前来说，我还是玩票性质，而树莓派玩的就是软件，玩的是社区而不是硬件，刚好对上了。</p>
+</li>
+<li><p>准备<br>首先要有树莓派，还要若干温度湿度摄像头等传感器。至于步进马达。。。再议，视乎是否有可调角度摄像头的需求。最后，淘宝是无所不能的。值得注意的有些SD卡会有兼容问题，购买SD卡最好先参考《RPi SD cards》。<br>树莓派由于BCM2835的限制，仅有HDMI和复合视频两种输出形式。可以通过HDMI直接接到电视等显示设备上，也可以通过ssh或者 vnc在局域网内部访问。俺就选用了ssh，简单省事，不需要折腾各种线缆。值得注意的是，千万不要为树莓派配备不接电源的HDMI转VGA转换器。eLinux上的一篇wiki警告说：不带电源的HDMI→VGA转换器可能损坏树莓派。这是因为HDMI连接器的第18针是一个+5V的供电，但是根据规范，它最多提供50mA的电流。而树莓派对第18针的供电，是将+5V输入，串接一个二极管D1(BAT54)作为保护送往18针。BAT54最高允许200mA电流（够宽松了其实）。但是市售不带电源的HDMI→VGA转换器，往往会从HDMI的18针吸取高至500mA的电流，这样就会远远超出D1的耐受能力，而最终烧毁D1。</p>
+</li>
+<li><p>安装<br>Raspberry Pi的系统是在SD卡上运行，必须先将系统安装到SD卡上。目前支持Raspberry Pi的Linux有很多版本。开始的时候还是选择一个官方量身定制的Raspian “wheezy”，这是一个在Debian基础上优化的版本，可以在官网下载。安装过程相当傻瓜式，几乎是一路Next到Finish。</p>
+</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/树莓派/">树莓派</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2014/09/18/树莓派：初见/" data-title="树莓派：初见 | Hexo" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/09/18/树莓派：温度湿度监控/" title="树莓派：温度湿度监控">
+  <strong>上一篇：</strong><br/>
+  <span>
+  树莓派：温度湿度监控</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/树莓派/" title="树莓派">树莓派<sup>8</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="http://yoursite.com/about" target="_blank" title="John Doe">John Doe</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+  </body>
+</html>

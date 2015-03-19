@@ -80,28 +80,37 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/03/17/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2014/09/18/树莓派：摄影摄像/" title="树莓派：摄影摄像" itemprop="url">树莓派：摄影摄像</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://yoursite.com/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
 		
   <p class="article-time">
-    <time datetime="2015-03-17T12:48:50.000Z" itemprop="datePublished"> 發表於 2015-03-17</time>
+    <time datetime="2014-09-18T09:45:04.000Z" itemprop="datePublished"> 發表於 2014-09-18</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>本来家里有个放了很久的网络摄像头，还打算用来尝试一下图像拍摄。可是不知道什么时候已经不工作了，山寨产品果然不可靠。然后在elinux的RPi USB Webcams list里面翻了翻，貌似罗技的摄像头支持度还不错。比较过后决定C270，评价挺不错：”image/video quality is crisp”，虽然不知道用的是什么镜头跟芯片——网络摄像头也不会是什么好东西了。然后有人说还需要带电源的USB Hub，就顺手在京东把这两个东西都顺下来了。昨晚下的单，快递哥哥今天早上就到了，赞一个。<br>晚上散步回来，立马插上C270，启动树莓派。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi ~ $ lsusb</span><br><span class="line">Bus <span class="number">001</span> Device <span class="number">002</span>: ID <span class="number">0424</span>:<span class="number">9512</span> Standard Microsystems Corp.</span><br><span class="line">Bus <span class="number">001</span> Device <span class="number">001</span>: ID <span class="number">1</span>d6b:<span class="number">0002</span> Linux Foundation <span class="number">2.0</span> root hub</span><br><span class="line">Bus <span class="number">001</span> Device <span class="number">003</span>: ID <span class="number">0424</span>:ec00 Standard Microsystems Corp.</span><br><span class="line">Bus <span class="number">001</span> Device <span class="number">004</span>: ID <span class="number">046</span>d:<span class="number">0825</span> Logitech, Inc. Webcam C270</span><br></pre></td></tr></table></figure></p>
+<p>咦，居然立马识别出来了，还没用带源的USB Hub。。。白担心了。。。 =_=!!!<br>再看一下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi ~ $ ls <span class="operator">-l</span> /dev/video*</span><br><span class="line">crw-rw---T <span class="number">1</span> root video <span class="number">81</span>, <span class="number">0</span> Jan <span class="number">1</span> <span class="number">1970</span> /dev/video0</span><br></pre></td></tr></table></figure></p>
+<p>嗯，挂在video0了。树莓派（或者Linux）上用来抓图的软件中，最简单的应该是fwebcam了。先用它做个简单的尝试，直接把video0的图像抓下来就好：</p>
+<pre><code class="bash">pi@raspberrypi ~ $ sudo fswebcam <span class="operator">-d</span> /dev/video0 -r <span class="number">640</span>x480 --bottom-banner --title <span class="string">"Raspberry Pi @xiaoqiang"</span> --no-timestamp /home/pi/LogitechC270.jpg
+--- Opening /dev/video0...
+Trying <span class="built_in">source</span> module v4l2...
+/dev/video0 opened.
+No input was specified, using the first.
+--- Capturing frame...
+Corrupt JPEG data: <span class="number">1</span> extraneous bytes before marker <span class="number">0</span>xd2
+Captured frame <span class="keyword">in</span> <span class="number">0.00</span> seconds.
+--- Processing captured image...
+Putting banner at the bottom.
+Setting title <span class="string">"Raspberry Pi @xiaoqiang"</span>.
+Clearing timestamp.
+Writing JPEG image to <span class="string">'/home/pi/LogitechC270.jpg'</span>.
+</code></pre>
+<p>这也太顺利了吧。。。<br>更高级一点的应用，则是用motion甚至opencv来获取处理图像视频。motion非常强大，可以监测画面变化；而OpenCV更加不用说了。不过OpenCV在树莓派上跑还是有点儿吃力，据说CPU基本保持在6、70%左右。我觉得下一代的树莓派会更值得期待。</p>
 
         
         
@@ -112,6 +121,522 @@
     <footer class="article-footer clearfix">
 <div class="article-catetags">
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/树莓派/">树莓派</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/18/树莓派：NAS/" title="树莓派：NAS" itemprop="url">树莓派：NAS</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
+  <p class="article-time">
+    <time datetime="2014-09-18T09:44:50.000Z" itemprop="datePublished"> 發表於 2014-09-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>如果有闲置的移动硬盘或者U盘，就可以组建一套廉价而低功效的NAS（Network Attached Storage：网络附属存储）。当然，效果不如专业的群晖出品的，甚至连西数MyBookLive那些简单易用的界面也很难保证。可是考虑到树莓派已经在运行中的话，那这个NAS的边际成本就很低了。<br>家里没有移动硬盘，倒是有那么一两个U盘，过程据说是一样的，那先试验一下吧。值得注意的是，树莓派的USB接口不足以给移动硬盘供电，因此我们需要一个带源的USBHub。</p>
+<ol>
+<li><p>准备硬盘（U盘）<br>插上U盘，检查一下树莓派是否已经识别出来</p>
+<pre><code>pi<span class="annotation">@raspberrypi</span> ~ $ ls <span class="regexp">/dev/</span>sd*
+<span class="regexp">/dev/</span>sda  <span class="regexp">/dev/</span>sda1
+</code></pre><p>然后创建一个目录，并且把U盘mount到这个目录。</p>
+<pre><code>pi<span class="variable">@raspberrypi</span> ~ <span class="variable">$ </span>mkdir usbdisk
+pi<span class="variable">@raspberrypi</span> ~ <span class="variable">$ </span>sudo mount -o rw /dev/sda1 /home/pi/usbdisk
+</code></pre><p>-o 表示选项，rw是读写，这种写法是root用户有读写权限。或者</p>
+<pre><code>sudo mount -t auto <span class="regexp">/dev/</span>sda1 <span class="regexp">/home/</span>pi<span class="regexp">/usbdisk</span>
+</code></pre><p>mount成功后，进入usbdisk，运行ls命令就可以看到U盘中的文件了。<br>安装ntfs-3g模块，于是就能读写NTFS格式的硬盘了。</p>
+<pre><code>sudo apt-<span class="keyword">get</span> install ntfs-<span class="number">3</span>g
+</code></pre><p>如果要拔出U盘，那么必须运行umount命令</p>
+<pre><code>sudo umount /home/<span class="constant">pi</span>/usbdisk
+</code></pre></li>
+<li><p>Samba<br>一般家里都会有一台Windows或者Mac电脑。设置Samba服务（Server Messages Block，信息服务块，是一种在局域网共享文件和打印机的一种通信协议，它为局域网内的不同计算机之间提供文件及打印机等资源的共享服务。），将会使文件操作更加方便。</p>
+<pre><code>sudo apt-<span class="built_in">get</span> install samba
+sudo apt-<span class="built_in">get</span> install samba-common-bin
+sudo <span class="keyword">cp</span> /etc/samba/smb.<span class="keyword">conf</span> /etc/samba/smb.<span class="keyword">conf</span>.bak
+sudo nano /etc/samba/smb.<span class="keyword">conf</span>
+</code></pre><p>然后就可以使用网络存储功能了。</p>
+</li>
+<li><p>数据备份<br>这个。。。以后再说吧。。。 </p>
+</li>
+</ol>
+<p>（参考James Bruce: Turn Your Raspberry Pi Into An NAS Box）</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/树莓派/">树莓派</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/18/树莓派：Web服务器/" title="树莓派：Web服务器" itemprop="url">树莓派：Web服务器</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
+  <p class="article-time">
+    <time datetime="2014-09-18T09:44:34.000Z" itemprop="datePublished"> 發表於 2014-09-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>就性能而言，树莓派不是一个作为Web服务器的优秀选择。事实上，即使WordPress这种个人Blog系统，如果被部署在树莓派上，其访问速度也是稍显缓慢的。但另一方面，当树莓派成为一个Web服务器，用户却可以通过网页访问树莓派，比如：查看摄像头或者控制电器等等。<br>树莓派运行Linux操作系统。一说到Linux Web服务器，人们首先想到的是LAMP组合：Linux+Apache+MySQL+PHP。但很多人也证明了，这个组合对于树莓派来说是太重了。因此，更适合的组合应该换成nginx+Sqlite。另外有人尝试了nodejs，似乎也是一个很不错的选择。</p>
+<ol>
+<li><p>nginx<br>安装nginx</p>
+<pre><code>sudo apt-<span class="keyword">get</span> install nginx
+</code></pre><p>启动nginx</p>
+<pre><code>sudo /etc/init.d/nginx <span class="built_in">start</span>
+</code></pre><p>nginx的www根目录默认为/usr/share/nginx/www</p>
+</li>
+<li><p>nodejs<br>安装也很简单</p>
+<pre><code>curl -O www<span class="class">.nodejs</span><span class="class">.org</span>/dist/v0.<span class="number">10.29</span>/node-v0.<span class="number">10.29</span><span class="class">.tar</span><span class="class">.gz</span>
+tar -zxvf node-v0.<span class="number">10.29</span><span class="class">.tar</span><span class="class">.gz</span>
+cd node-v0.<span class="number">10.29</span>
+./configure
+make
+make install
+</code></pre><p>不过得吐槽一下，这个make过程太漫长了，足足用了四个小时。。。orz<br>然后顺手安装了hexo，一个静态页面的blog系统。访问速度嘛，只能说还凑合。。。<br>我做这件事情，主要也是为了试验访问树莓派中的图像数据的情况。结果比较乐观。<br>国外大牛就高大上了：一台树莓派+一个DeviantArt账号=一面动态精美插画墙<br>DeviantArt.com是一个插图社区，Wiebe写了一个脚本，将网站内的图片导入到树莓派内，并且通过显示屏，动态得将图片展示到一面墙上。真服了。<br><img src="!--￼0--&gt;image/RPi_11.jpg" alt="WebServer"> </p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/树莓派/">树莓派</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/18/树莓派：编程语言/" title="树莓派：编程语言" itemprop="url">树莓派：编程语言</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
+  <p class="article-time">
+    <time datetime="2014-09-18T09:44:19.000Z" itemprop="datePublished"> 發表於 2014-09-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>准确来说，树莓派并没有标准的开发语言。它本质上是一台安装Linux系统的电脑，虽然CPU是ARM的。那么理论上普通Linux机器上能用的语言，树莓派上也可以使用。</p>
+<ol>
+<li><p>Python<br>所谓的胶水语言，因为它能够把各种语言胶合起来，使用方便，因此哪儿都用得上。用Python处理一些简短程序类似与操作系统的交互编程工作最省时省力。<br>先看一下版本</p>
+<pre><code>pi<span class="variable">@raspberrypi</span> ~ <span class="variable">$ </span>python -<span class="constant">V</span>
+<span class="constant">Python </span><span class="number">2.7</span>.<span class="number">3</span>
+</code></pre><p>好吧，试试print^_^</p>
+<pre><code><span class="built_in">print</span> <span class="string">'hello world'</span>
+hello world
+</code></pre><p>Python是跨平台的，在树莓派上运行各种语言特性，跟在Windows下丝毫没发现区别。如果在树莓派上开发小工具的话，数据库跟网络往往是必须的。<br>对于很多小项目，并不需要开发复杂的关系型数据库。因此python的dbm、Pickle、Shelve等很能派上用场。anydbm将数据文件与一个“dict-like”对象关联起来，操作这个“dict-like”对象，就像操作dict对象一样，最后可以将“dict-like”的数据持久化到文件。对这个”dict-like”对象进行操作的时候，key和value的类型必须是字符串。</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; import anydbm
+<span class="prompt">&gt;&gt;</span>&gt; file = anydbm.open(<span class="string">'name'</span>,<span class="string">'c'</span>)
+<span class="prompt">&gt;&gt;</span>&gt; file[<span class="string">'zhang'</span>] = <span class="string">'san'</span>
+<span class="prompt">&gt;&gt;</span>&gt; file.keys()
+[<span class="string">'zhang'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; file[<span class="string">'zhang'</span>]
+<span class="string">'san'</span>
+</code></pre><p>Pickle模块实现了基本的数据序列和反序列化，Shelve则是anydbm+Pickle的增强版，它支持在”dict-like”对象中存储任何可以被Pickle序列化的对象，但key也必须是字符串。</p>
+<pre><code><span class="keyword">import</span> shelve
+
+<span class="function"><span class="keyword">def</span> <span class="title">CreateDB</span><span class="params">()</span>:</span>
+    <span class="keyword">try</span>:
+        db = shelve.open(<span class="string">'db.dat'</span>, <span class="string">'c'</span>)
+        db[<span class="string">'int'</span>] = <span class="number">1</span>
+        db[<span class="string">'float'</span>] = <span class="number">2.3</span>
+        db[<span class="string">'string'</span>] = <span class="string">"I am Shelve."</span>
+        db[<span class="string">'key'</span>] = <span class="string">'value'</span>
+    <span class="keyword">finally</span>:
+        db.close()
+
+<span class="function"><span class="keyword">def</span> <span class="title">LoadDB</span><span class="params">()</span>:</span>
+    db = shelve.open(<span class="string">'db.dat'</span>, <span class="string">'r'</span>)
+    <span class="keyword">for</span> item <span class="keyword">in</span> db.items():
+        <span class="keyword">print</span> item
+    db.close()
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    CreateDB()
+    LoadDB()
+</code></pre><p>至于网络访问，则是建议使用requests库实现get/post请求。这是一个简单好用的网络通信工具。</p>
+<pre><code><span class="built_in">import</span> requests
+<span class="variable">r =</span> requests.get(apiurl,<span class="variable">headers=</span>apiheaders)
+</code></pre></li>
+<li><p>C/C++<br>既然说到胶水，那么必须得有要连接起来的基础件。这就到了C/C++大显身手的时候了。偶然看到openFrameworks，我和我的小伙伴们表示，看完这个视频都被惊呆了。</p>
+</li>
+</ol>
+<p>它就是用openFrameworks开发的，一个以用户交互见长，是一个拥有艺术家加黑客气质的框架。<br>从0.80开始，openFrameworks支持Raspberry Pi。偶然会觉得他们有相同的气质，大概也是一对好基友。<br>然后就是一时冲动，在树莓派上安装了Code::Blocks，居然也能跑起来了。但强烈怀疑编译运行速度。。。<br><img src="!--￼0--&gt;image/RPi_10.jpg" alt="codeblocks"> </p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/树莓派/">树莓派</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/18/树莓派：网络配置/" title="树莓派：网络配置" itemprop="url">树莓派：网络配置</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
+  <p class="article-time">
+    <time datetime="2014-09-18T09:44:07.000Z" itemprop="datePublished"> 發表於 2014-09-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li><p>ssh<br>树莓派官方系统Raspbian自2012-9-18版本之后，均设置了ssh服务随系统自动启动。因此只需要一个ssh客户端就可以远程登陆raspberry pi了。这里推荐的是putty<br><img src="!--￼0--&gt;image/RPi_06.jpg" alt="Putty"> </p>
+</li>
+<li><p>ftp<br>安装vsftpd服务器</p>
+<pre><code>sudo apt-<span class="keyword">get</span> install vsftpd
+</code></pre><p>启动ftp服务</p>
+<pre><code>sudo <span class="keyword">service</span> vsftpd <span class="literal">start</span>
+</code></pre><p>编辑vsftpd的配置文件</p>
+<pre><code>sudo nano <span class="regexp">/etc/</span>vsftpd.conf
+</code></pre><p>设置后保存退出</p>
+<pre><code><span class="setting">anonymous_enable=<span class="value"><span class="keyword">NO</span></span></span>
+<span class="setting">local_enable=<span class="value"><span class="keyword">YES</span></span></span>
+<span class="setting">write_enable=<span class="value"><span class="keyword">YES</span></span></span>
+<span class="setting">local_umask=<span class="value"><span class="number">022</span></span></span>
+</code></pre><p>重启vsftpd服务</p>
+<pre><code>sudo <span class="keyword">service</span> vsftpd <span class="literal">restart</span>
+</code></pre><p>以用户名pi登录，密码是raspberry。ftp的根目录是/home/pi，即pi用户的HOME目录。测试成功。</p>
+</li>
+<li><p>xrdp<br>需要在raspbain下面安装一个服务xdrp，运行命令</p>
+<pre><code>sudo apt-<span class="keyword">get</span> install xrdp
+</code></pre><p>然后就可以使用windows的远程桌面连接了。输入Raspberry Pi的地址<br><img src="!--￼1--&gt;image/RPi_07.jpg" alt="remote"><br><img src="!--￼2--&gt;image/RPi_08.jpg" alt="xrdp"><br>输入username和password，就可以进入系统<br><img src="!--￼3--&gt;image/RPi_09.jpg" alt="xwindow"> </p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/树莓派/">树莓派</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/18/树莓派：GPIO接口/" title="树莓派：GPIO接口" itemprop="url">树莓派：GPIO接口</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
+  <p class="article-time">
+    <time datetime="2014-09-18T09:43:54.000Z" itemprop="datePublished"> 發表於 2014-09-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>　 　GPIO，英文全称为General-Purpose IO ports，也就是通用IO口。在嵌入式系统中常常有数量众多，但是结构比较简单的外部设备/电路，对这些设备/电路有的需要CPU为之提供控制手段， 有的则需要被CPU用作输入信号。而且，许多这样的设备/电路只要求一位，即只要有开/关两种状态就够了，比如灯亮与灭。对这些设备/电路的控制，使用传统的串行口或并行口都不合适。所以在微控制器芯片上一般都会提供一个“通用可编程IO接口”。GPIO接口至少有两个寄存器，“通用IO控制寄存器”与“通用IO数据寄存器”。<br>    玩树莓派，基本上也是玩各种外设，典型的如温度湿度传感器、继电器、步进电机等等。这些外设就可以通过GPIO接口提供控制信号或者传输数据。下图是树莓派的GPIO接口定义<br><img src="!--￼0--&gt;image/RPi_05.jpg" alt="GPIO"><br>对于树莓派的GPIO编程，大牛们已经提供了相当多的工具:<br>PRi.GPIO<br>WebIOPi<br>wiringPi</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/树莓派/">树莓派</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/18/树莓派：温度湿度监控/" title="树莓派：温度湿度监控" itemprop="url">树莓派：温度湿度监控</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
+  <p class="article-time">
+    <time datetime="2014-09-18T09:43:34.000Z" itemprop="datePublished"> 發表於 2014-09-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li><p>CPU的温度<br>最简单的实例莫过于对树莓派CPU的温度的监控。可以通过如下命令获取</p>
+<pre><code>pi<span class="annotation">@raspberrypi</span> ~ $ <span class="regexp">/opt/</span>vc<span class="regexp">/bin/</span>vcgencmd measure_temp
+temp=<span class="number">48.7</span><span class="string">'C</span>
+</code></pre></li>
+<li><p>DS18B20<br>电压范围为3.0 V至5.5 V 无需备用电源 测量温度范围为-55℃至+125℃。范围内精度为±0.5℃。温度传感器可编程的分辨率为9~12位，温度转换为12位数字格式最大值为750毫秒。（百度百科）<br>如果用一个IO口挂多个传感器，就可以获取多个监测点的温度。把传感器并连起来，VDD脚接5V电压，GND脚接地，DQ脚接到pi的GPIO接口的GPIO脚。VDD脚与DQ脚之间挂4.7KΩ的电阻。如果不想自己焊电阻的话，在买DS18B20（4、5元）的同时可以跟店家买DS18B20的电路模块(多1、2元)。<br><img src="!--￼0--&gt;image/RPi_02.jpg" alt="DS18B20"><br>多个DS18B20接到树莓派上去是这样接的(如下图)：（摘自：《树莓派+多个DS18B20+Yeelink，全天候监测多个点的温度》）<br><img src="!--￼1--&gt;image/RPi_03.jpg" alt="DS18B20"> </p>
+</li>
+<li><p>DHT11<br>DHT11数字温湿度传感器是一款含有已校准数字信号输出的温湿度复合传感器，它应用专用的数字模块采集技术和温湿度传感技术，确保产品具有极高的可靠性和卓越的长期稳定性。传感器包括一个电阻式感湿元件和一个NTC测温元件，并与一个高性能8位单片机相连接。因此该产品具有品质卓越、超快响应、抗干扰能力强、性价比极高等优点。每个 DHT11传感器都在极为精确的湿度校验室中进行校准。校准系数以程序的形式存在OTP内存中，传感器内部在检测型号的处理过程中要调用这些校准系数。单线制串行接口，使系统集成变得简易快捷。超小的体积、极低的功耗，使其成为给类应用甚至最为苛刻的应用场合的最佳选择。产品为4针单排引脚封装，连接方便。（摘自百度）<br>同样是万能的淘宝，有店家也提供做好的电路模块。<br>网上有提到，DHT11的测量值并不是特别稳定，偶然有异常数据出现。在实际试验中，这种异常数据的确很容易出现（如下图的尖峰）。<br><img src="!--￼2--&gt;image/RPi_04.png" alt="YeeLink"> </p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/树莓派/">树莓派</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/18/树莓派：初见/" title="树莓派：初见" itemprop="url">树莓派：初见</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
+  <p class="article-time">
+    <time datetime="2014-09-18T09:36:19.000Z" itemprop="datePublished"> 發表於 2014-09-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p><img src="!--￼0--&gt;image/RPi_01.jpg" alt="RaspberryPi"> </p>
+<ol>
+<li><p>前言<br>最早是在csdn上的一篇文章《三大主流开源硬件对比：Arduino vs BeagleBone vs Raspberry Pi》， 知道了这个神奇的东西，惊喜的发现一个这么小的东西居然有这么强大的功能，CPU、GPU、网络一应俱全，简直就是一台电脑了。后来跟同学聊天，得知他打算用Arduino做运动导轨，于是萌发了涉及硬件的想法，而且好歹俺也是电子出身的，不能忘本。刚好近期项目中软硬件联调频繁，I2C、SPI什么的多少了解了一点。项目情况不太好，大伙儿经常加班却依然进展迟滞，于是自己就琢磨着做点好玩的东西，免得对技术开发失去兴趣（=_=!），于是冒出一个实现家庭监控系统的想法。<br>基于视频监控的需求，Arduino立马就被排除掉了。至于后两者，我觉得树莓派的社区更加活跃，资源更丰富。至少到目前来说，我还是玩票性质，而树莓派玩的就是软件，玩的是社区而不是硬件，刚好对上了。</p>
+</li>
+<li><p>准备<br>首先要有树莓派，还要若干温度湿度摄像头等传感器。至于步进马达。。。再议，视乎是否有可调角度摄像头的需求。最后，淘宝是无所不能的。值得注意的有些SD卡会有兼容问题，购买SD卡最好先参考《RPi SD cards》。<br>树莓派由于BCM2835的限制，仅有HDMI和复合视频两种输出形式。可以通过HDMI直接接到电视等显示设备上，也可以通过ssh或者 vnc在局域网内部访问。俺就选用了ssh，简单省事，不需要折腾各种线缆。值得注意的是，千万不要为树莓派配备不接电源的HDMI转VGA转换器。eLinux上的一篇wiki警告说：不带电源的HDMI→VGA转换器可能损坏树莓派。这是因为HDMI连接器的第18针是一个+5V的供电，但是根据规范，它最多提供50mA的电流。而树莓派对第18针的供电，是将+5V输入，串接一个二极管D1(BAT54)作为保护送往18针。BAT54最高允许200mA电流（够宽松了其实）。但是市售不带电源的HDMI→VGA转换器，往往会从HDMI的18针吸取高至500mA的电流，这样就会远远超出D1的耐受能力，而最终烧毁D1。</p>
+</li>
+<li><p>安装<br>Raspberry Pi的系统是在SD卡上运行，必须先将系统安装到SD卡上。目前支持Raspberry Pi的Linux有很多版本。开始的时候还是选择一个官方量身定制的Raspian “wheezy”，这是一个在Debian基础上优化的版本，可以在官网下载。安装过程相当傻瓜式，几乎是一路Next到Finish。</p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/树莓派/">树莓派</a>
+  </div>
 
 </div>
 
@@ -143,6 +668,17 @@
   
 
   
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/树莓派/" title="树莓派">树莓派<sup>8</sup></a></li>
+			
+		
+		</ul>
+</div>
+
 
   <div class="linkslist">
   <p class="asidetitle">友情鏈接</p>
