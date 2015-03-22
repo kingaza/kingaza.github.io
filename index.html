@@ -113,7 +113,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/智能硬件/" style="font-size: 10px;">智能硬件</a><a href="/tags/树莓派/" style="font-size: 20px;">树莓派</a>
+						<a href="/tags/智能硬件/" style="font-size: NaNpx;">智能硬件</a>
 					</div>
 				</section>
 				
@@ -195,11 +195,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-树莓派：摄影摄像" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-树莓派3：进阶" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/18/树莓派：摄影摄像/" class="article-date">
-  	<time datetime="2014-09-18T09:45:04.000Z" itemprop="datePublished">2014-09-18</time>
+      <a href="/2014/09/20/树莓派3：进阶/" class="article-date">
+  	<time datetime="2014-09-20T09:43:34.000Z" itemprop="datePublished">2014-09-20</time>
 </a>
     </div>
   
@@ -212,7 +212,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/18/树莓派：摄影摄像/">树莓派：摄影摄像</a>
+      <a class="article-title" href="/2014/09/20/树莓派3：进阶/">树莓派3：进阶</a>
     </h1>
   
 
@@ -221,36 +221,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本来家里有个放了很久的网络摄像头，还打算用来尝试一下图像拍摄。可是不知道什么时候已经不工作了，山寨产品果然不可靠。然后在elinux的RPi USB Webcams list里面翻了翻，貌似罗技的摄像头支持度还不错。比较过后决定C270，评价挺不错：”image/video quality is crisp”，虽然不知道用的是什么镜头跟芯片——网络摄像头也不会是什么好东西了。然后有人说还需要带电源的USB Hub，就顺手在京东把这两个东西都顺下来了。昨晚下的单，快递哥哥今天早上就到了，赞一个。<br>晚上散步回来，立马插上C270，启动树莓派。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi ~ $ lsusb</span><br><span class="line">Bus <span class="number">001</span> Device <span class="number">002</span>: ID <span class="number">0424</span>:<span class="number">9512</span> Standard Microsystems Corp.</span><br><span class="line">Bus <span class="number">001</span> Device <span class="number">001</span>: ID <span class="number">1</span>d6b:<span class="number">0002</span> Linux Foundation <span class="number">2.0</span> root hub</span><br><span class="line">Bus <span class="number">001</span> Device <span class="number">003</span>: ID <span class="number">0424</span>:ec00 Standard Microsystems Corp.</span><br><span class="line">Bus <span class="number">001</span> Device <span class="number">004</span>: ID <span class="number">046</span>d:<span class="number">0825</span> Logitech, Inc. Webcam C270</span><br></pre></td></tr></table></figure></p>
-<p>咦，居然立马识别出来了，还没用带源的USB Hub。。。白担心了。。。 =_=!!!<br>再看一下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi ~ $ ls <span class="operator">-l</span> /dev/video*</span><br><span class="line">crw-rw---T <span class="number">1</span> root video <span class="number">81</span>, <span class="number">0</span> Jan <span class="number">1</span> <span class="number">1970</span> /dev/video0</span><br></pre></td></tr></table></figure></p>
-<p>嗯，挂在video0了。树莓派（或者Linux）上用来抓图的软件中，最简单的应该是fwebcam了。先用它做个简单的尝试，直接把video0的图像抓下来就好：</p>
-<pre><code class="bash">pi@raspberrypi ~ $ sudo fswebcam <span class="operator">-d</span> /dev/video0 -r <span class="number">640</span>x480 --bottom-banner --title <span class="string">"Raspberry Pi @xiaoqiang"</span> --no-timestamp /home/pi/LogitechC270.jpg
---- Opening /dev/video0...
-Trying <span class="built_in">source</span> module v4l2...
-/dev/video0 opened.
-No input was specified, using the first.
---- Capturing frame...
-Corrupt JPEG data: <span class="number">1</span> extraneous bytes before marker <span class="number">0</span>xd2
-Captured frame <span class="keyword">in</span> <span class="number">0.00</span> seconds.
---- Processing captured image...
-Putting banner at the bottom.
-Setting title <span class="string">"Raspberry Pi @xiaoqiang"</span>.
-Clearing timestamp.
-Writing JPEG image to <span class="string">'/home/pi/LogitechC270.jpg'</span>.
-</code></pre>
-<p>这也太顺利了吧。。。<br>更高级一点的应用，则是用motion甚至opencv来获取处理图像视频。motion非常强大，可以监测画面变化；而OpenCV更加不用说了。不过OpenCV在树莓派上跑还是有点儿吃力，据说CPU基本保持在6、70%左右。我觉得下一代的树莓派会更值得期待。</p>
-
+        <p>有了树莓派我们能做什么？无线热点？机械假肢？wifi小车？四旋翼飞行器？超级计算机？还是航拍？<br>想得太多了，先从简单的做起吧~</p>
       
     </div>
     
     <div class="article-info article-info-index">
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树莓派/">树莓派</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/智能硬件/">智能硬件</a></li></ul>
 	</div>
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2014/09/20/树莓派3：进阶/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -265,11 +251,11 @@ Writing JPEG image to <span class="string">'/home/pi/LogitechC270.jpg'</span>.
 
 
   
-    <article id="post-树莓派：NAS" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-树莓派2：网络" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/18/树莓派：NAS/" class="article-date">
-  	<time datetime="2014-09-18T09:44:50.000Z" itemprop="datePublished">2014-09-18</time>
+      <a href="/2014/09/19/树莓派2：网络/" class="article-date">
+  	<time datetime="2014-09-19T09:44:07.000Z" itemprop="datePublished">2014-09-19</time>
 </a>
     </div>
   
@@ -282,7 +268,7 @@ Writing JPEG image to <span class="string">'/home/pi/LogitechC270.jpg'</span>.
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/18/树莓派：NAS/">树莓派：NAS</a>
+      <a class="article-title" href="/2014/09/19/树莓派2：网络/">树莓派2：网络</a>
     </h1>
   
 
@@ -291,251 +277,22 @@ Writing JPEG image to <span class="string">'/home/pi/LogitechC270.jpg'</span>.
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如果有闲置的移动硬盘或者U盘，就可以组建一套廉价而低功效的NAS（Network Attached Storage：网络附属存储）。当然，效果不如专业的群晖出品的，甚至连西数MyBookLive那些简单易用的界面也很难保证。可是考虑到树莓派已经在运行中的话，那这个NAS的边际成本就很低了。<br>家里没有移动硬盘，倒是有那么一两个U盘，过程据说是一样的，那先试验一下吧。值得注意的是，树莓派的USB接口不足以给移动硬盘供电，因此我们需要一个带源的USBHub。</p>
-<ol>
-<li><p>准备硬盘（U盘）<br>插上U盘，检查一下树莓派是否已经识别出来</p>
-<pre><code>pi<span class="annotation">@raspberrypi</span> ~ $ ls <span class="regexp">/dev/</span>sd*
-<span class="regexp">/dev/</span>sda  <span class="regexp">/dev/</span>sda1
-</code></pre><p>然后创建一个目录，并且把U盘mount到这个目录。</p>
-<pre><code>pi<span class="variable">@raspberrypi</span> ~ <span class="variable">$ </span>mkdir usbdisk
-pi<span class="variable">@raspberrypi</span> ~ <span class="variable">$ </span>sudo mount -o rw /dev/sda1 /home/pi/usbdisk
-</code></pre><p>-o 表示选项，rw是读写，这种写法是root用户有读写权限。或者</p>
-<pre><code>sudo mount -t auto <span class="regexp">/dev/</span>sda1 <span class="regexp">/home/</span>pi<span class="regexp">/usbdisk</span>
-</code></pre><p>mount成功后，进入usbdisk，运行ls命令就可以看到U盘中的文件了。<br>安装ntfs-3g模块，于是就能读写NTFS格式的硬盘了。</p>
-<pre><code>sudo apt-<span class="keyword">get</span> install ntfs-<span class="number">3</span>g
-</code></pre><p>如果要拔出U盘，那么必须运行umount命令</p>
-<pre><code>sudo umount /home/<span class="constant">pi</span>/usbdisk
-</code></pre></li>
-<li><p>Samba<br>一般家里都会有一台Windows或者Mac电脑。设置Samba服务（Server Messages Block，信息服务块，是一种在局域网共享文件和打印机的一种通信协议，它为局域网内的不同计算机之间提供文件及打印机等资源的共享服务。），将会使文件操作更加方便。</p>
-<pre><code>sudo apt-<span class="built_in">get</span> install samba
-sudo apt-<span class="built_in">get</span> install samba-common-bin
-sudo <span class="keyword">cp</span> /etc/samba/smb.<span class="keyword">conf</span> /etc/samba/smb.<span class="keyword">conf</span>.bak
-sudo nano /etc/samba/smb.<span class="keyword">conf</span>
-</code></pre><p>然后就可以使用网络存储功能了。</p>
-</li>
-<li><p>数据备份<br>这个。。。以后再说吧。。。 </p>
-</li>
-</ol>
-<p>（参考James Bruce: Turn Your Raspberry Pi Into An NAS Box）</p>
-
+        <p>无网络不幸福。这年头不管什么事情都要搬到网上去，所以，你拿到树莓派之后的第一件事情一定是把他连接到因特网上。之后，那就是无限的可能了。我们的征途是星辰大海~~</p>
       
     </div>
     
     <div class="article-info article-info-index">
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树莓派/">树莓派</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/智能硬件/">智能硬件</a></li></ul>
 	</div>
 
       
 
       
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-树莓派：Web服务器" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/18/树莓派：Web服务器/" class="article-date">
-  	<time datetime="2014-09-18T09:44:34.000Z" itemprop="datePublished">2014-09-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/18/树莓派：Web服务器/">树莓派：Web服务器</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>就性能而言，树莓派不是一个作为Web服务器的优秀选择。事实上，即使WordPress这种个人Blog系统，如果被部署在树莓派上，其访问速度也是稍显缓慢的。但另一方面，当树莓派成为一个Web服务器，用户却可以通过网页访问树莓派，比如：查看摄像头或者控制电器等等。<br>树莓派运行Linux操作系统。一说到Linux Web服务器，人们首先想到的是LAMP组合：Linux+Apache+MySQL+PHP。但很多人也证明了，这个组合对于树莓派来说是太重了。因此，更适合的组合应该换成nginx+Sqlite。另外有人尝试了nodejs，似乎也是一个很不错的选择。</p>
-<ol>
-<li><p>nginx<br>安装nginx</p>
-<pre><code>sudo apt-<span class="keyword">get</span> install nginx
-</code></pre><p>启动nginx</p>
-<pre><code>sudo /etc/init.d/nginx <span class="built_in">start</span>
-</code></pre><p>nginx的www根目录默认为/usr/share/nginx/www</p>
-</li>
-<li><p>nodejs<br>安装也很简单</p>
-<pre><code>curl -O www<span class="class">.nodejs</span><span class="class">.org</span>/dist/v0.<span class="number">10.29</span>/node-v0.<span class="number">10.29</span><span class="class">.tar</span><span class="class">.gz</span>
-tar -zxvf node-v0.<span class="number">10.29</span><span class="class">.tar</span><span class="class">.gz</span>
-cd node-v0.<span class="number">10.29</span>
-./configure
-make
-make install
-</code></pre><p>不过得吐槽一下，这个make过程太漫长了，足足用了四个小时。。。orz<br>然后顺手安装了hexo，一个静态页面的blog系统。访问速度嘛，只能说还凑合。。。<br>我做这件事情，主要也是为了试验访问树莓派中的图像数据的情况。结果比较乐观。<br>国外大牛就高大上了：一台树莓派+一个DeviantArt账号=一面动态精美插画墙<br>DeviantArt.com是一个插图社区，Wiebe写了一个脚本，将网站内的图片导入到树莓派内，并且通过显示屏，动态得将图片展示到一面墙上。真服了。<br><img src="!--￼0--&gt;image/RPi_11.jpg" alt="WebServer"> </p>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树莓派/">树莓派</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-树莓派：网络配置" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/18/树莓派：网络配置/" class="article-date">
-  	<time datetime="2014-09-18T09:44:07.000Z" itemprop="datePublished">2014-09-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/18/树莓派：网络配置/">树莓派：网络配置</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>ssh<br>树莓派官方系统Raspbian自2012-9-18版本之后，均设置了ssh服务随系统自动启动。因此只需要一个ssh客户端就可以远程登陆raspberry pi了。这里推荐的是putty<br><img src="!--￼0--&gt;image/RPi_06.jpg" alt="Putty"> </p>
-</li>
-<li><p>ftp<br>安装vsftpd服务器</p>
-<pre><code>sudo apt-<span class="keyword">get</span> install vsftpd
-</code></pre><p>启动ftp服务</p>
-<pre><code>sudo <span class="keyword">service</span> vsftpd <span class="literal">start</span>
-</code></pre><p>编辑vsftpd的配置文件</p>
-<pre><code>sudo nano <span class="regexp">/etc/</span>vsftpd.conf
-</code></pre><p>设置后保存退出</p>
-<pre><code><span class="setting">anonymous_enable=<span class="value"><span class="keyword">NO</span></span></span>
-<span class="setting">local_enable=<span class="value"><span class="keyword">YES</span></span></span>
-<span class="setting">write_enable=<span class="value"><span class="keyword">YES</span></span></span>
-<span class="setting">local_umask=<span class="value"><span class="number">022</span></span></span>
-</code></pre><p>重启vsftpd服务</p>
-<pre><code>sudo <span class="keyword">service</span> vsftpd <span class="literal">restart</span>
-</code></pre><p>以用户名pi登录，密码是raspberry。ftp的根目录是/home/pi，即pi用户的HOME目录。测试成功。</p>
-</li>
-<li><p>xrdp<br>需要在raspbain下面安装一个服务xdrp，运行命令</p>
-<pre><code>sudo apt-<span class="keyword">get</span> install xrdp
-</code></pre><p>然后就可以使用windows的远程桌面连接了。输入Raspberry Pi的地址<br><img src="!--￼1--&gt;image/RPi_07.jpg" alt="remote"><br><img src="!--￼2--&gt;image/RPi_08.jpg" alt="xrdp"><br>输入username和password，就可以进入系统<br><img src="!--￼3--&gt;image/RPi_09.jpg" alt="xwindow"> </p>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树莓派/">树莓派</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-树莓派：温度湿度监控" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/18/树莓派：温度湿度监控/" class="article-date">
-  	<time datetime="2014-09-18T09:43:34.000Z" itemprop="datePublished">2014-09-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/18/树莓派：温度湿度监控/">树莓派：温度湿度监控</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>CPU的温度<br>最简单的实例莫过于对树莓派CPU的温度的监控。可以通过如下命令获取</p>
-<pre><code>pi<span class="annotation">@raspberrypi</span> ~ $ <span class="regexp">/opt/</span>vc<span class="regexp">/bin/</span>vcgencmd measure_temp
-temp=<span class="number">48.7</span><span class="string">'C</span>
-</code></pre></li>
-<li><p>DS18B20<br>电压范围为3.0 V至5.5 V 无需备用电源 测量温度范围为-55℃至+125℃。范围内精度为±0.5℃。温度传感器可编程的分辨率为9~12位，温度转换为12位数字格式最大值为750毫秒。（百度百科）<br>如果用一个IO口挂多个传感器，就可以获取多个监测点的温度。把传感器并连起来，VDD脚接5V电压，GND脚接地，DQ脚接到pi的GPIO接口的GPIO脚。VDD脚与DQ脚之间挂4.7KΩ的电阻。如果不想自己焊电阻的话，在买DS18B20（4、5元）的同时可以跟店家买DS18B20的电路模块(多1、2元)。<br><img src="!--￼0--&gt;image/RPi_02.jpg" alt="DS18B20"><br>多个DS18B20接到树莓派上去是这样接的(如下图)：（摘自：《树莓派+多个DS18B20+Yeelink，全天候监测多个点的温度》）<br><img src="!--￼1--&gt;image/RPi_03.jpg" alt="DS18B20"> </p>
-</li>
-<li><p>DHT11<br>DHT11数字温湿度传感器是一款含有已校准数字信号输出的温湿度复合传感器，它应用专用的数字模块采集技术和温湿度传感技术，确保产品具有极高的可靠性和卓越的长期稳定性。传感器包括一个电阻式感湿元件和一个NTC测温元件，并与一个高性能8位单片机相连接。因此该产品具有品质卓越、超快响应、抗干扰能力强、性价比极高等优点。每个 DHT11传感器都在极为精确的湿度校验室中进行校准。校准系数以程序的形式存在OTP内存中，传感器内部在检测型号的处理过程中要调用这些校准系数。单线制串行接口，使系统集成变得简易快捷。超小的体积、极低的功耗，使其成为给类应用甚至最为苛刻的应用场合的最佳选择。产品为4针单排引脚封装，连接方便。（摘自百度）<br>同样是万能的淘宝，有店家也提供做好的电路模块。<br>网上有提到，DHT11的测量值并不是特别稳定，偶然有异常数据出现。在实际试验中，这种异常数据的确很容易出现（如下图的尖峰）。<br><img src="!--￼2--&gt;image/RPi_04.png" alt="YeeLink"> </p>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树莓派/">树莓派</a></li></ul>
-	</div>
-
-      
-
+        <p class="article-more-link">
+          <a  href="/2014/09/19/树莓派2：网络/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -567,7 +324,7 @@ temp=<span class="number">48.7</span><span class="string">'C</span>
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/18/树莓派1：初见/">树莓派：初见</a>
+      <a class="article-title" href="/2014/09/18/树莓派1：初见/">树莓派1：初见</a>
     </h1>
   
 
@@ -577,7 +334,7 @@ temp=<span class="number">48.7</span><span class="string">'C</span>
     <div class="article-entry" itemprop="articleBody">
       
         <p>Raspberry Pi(中文名为“树莓派”,简写为RPi，或者RasPi/RPi)是为学生计算机编程教育而设计，只有信用卡大小的卡片式电脑，其系统基于Linux。它是由英国的树莓派基金会（Raspberry Pi Foundation ）开发，意在提升学校在CS（Computer Science）上的教学。</p>
-<p><img src="/image/RPi_01.jpg" alt="RaspberryPi"> </p>
+<p><img src="/asset/image/RPi_01.jpg" alt="RaspberryPi"> </p>
       
     </div>
     
