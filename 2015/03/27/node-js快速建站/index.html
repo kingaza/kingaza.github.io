@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>node.js快速建站 | Mr. He</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="现在node.js很火很火，连微软的Visual Studio都对它提供开发环境。如果使用node.js，那么以前对web的概念，都还是我们熟悉的一些关键词:http, request, response, html, template engine, url routing, MVC, GET, POST, MYSQL, Database……唯一不同的是, 这里只使用javascript就可以驱">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node.js快速建站">
+<meta property="og:url" content="http://yoursite.com/2015/03/27/node-js快速建站/index.html">
+<meta property="og:site_name" content="Mr. He">
+<meta property="og:description" content="现在node.js很火很火，连微软的Visual Studio都对它提供开发环境。如果使用node.js，那么以前对web的概念，都还是我们熟悉的一些关键词:http, request, response, html, template engine, url routing, MVC, GET, POST, MYSQL, Database……唯一不同的是, 这里只使用javascript就可以驱">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node.js快速建站">
+<meta name="twitter:description" content="现在node.js很火很火，连微软的Visual Studio都对它提供开发环境。如果使用node.js，那么以前对web的概念，都还是我们熟悉的一些关键词:http, request, response, html, template engine, url routing, MVC, GET, POST, MYSQL, Database……唯一不同的是, 这里只使用javascript就可以驱">
+  
+    <link rel="alternative" href="/atom.xml" title="Mr. He" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">何金强</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kingaza" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/1788175251" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="mail" target="_blank" href="/kingaza@gmail.com" title="mail">mail</a>
+					        
+								<a class="linkedin" target="_blank" href="/#" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Raspberry-Pi/" style="font-size: 20px;">Raspberry Pi</a><a href="/tags/javascript/" style="font-size: 10px;">javascript</a><a href="/tags/node-js/" style="font-size: 10px;">node.js</a><a href="/tags/智能硬件/" style="font-size: 20px;">智能硬件</a><a href="/tags/软件开发/" style="font-size: 10px;">软件开发</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I am He. I am working for Magnetic Resonance.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">何金强</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="">
+				<hgroup>
+				  <h1 class="header-author">何金强</h1>
+				</hgroup>
+			</div>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kingaza" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/1788175251" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/kingaza@gmail.com" title="mail">mail</a>
+			        
+						<a class="linkedin" target="_blank" href="/#" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-node-js快速建站" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/27/node-js快速建站/" class="article-date">
+  	<time datetime="2015-03-27T11:17:33.000Z" itemprop="datePublished">2015-03-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      node.js快速建站
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发/">软件开发</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在node.js很火很火，连微软的Visual Studio都对它提供开发环境。如果使用node.js，那么以前对web的概念，都还是我们熟悉的一些关键词:http, request, response, html, template engine, url routing, MVC, GET, POST, MYSQL, Database……唯一不同的是, 这里只使用javascript就可以驱动着以上的一切.</p>
+<p>Express是目前最流行的基于Node.js的Web开发框架, 使用它可以快速地搭建网站原型，它是一个node.js模块，采用npm全局模块进行安装。而且他十分精简，在4.x版本下周有2、3百行的代码。<br>再利用bootstrap美化界面，jquery简化编程，还有利用mongodb来做持久化……这个组合想想都很强大~~</p>
+<a id="more"></a>
+<h1 id="建立express项目">建立express项目</h1><h2 id="安装命令">安装命令</h2><p>首先，我们需要安装express库。依然是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express --save</span><br></pre></td></tr></table></figure>
+<p>从expressjs 4.0以后，generator包就从express独立出来了，因此需要额外安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g express-generator</span><br></pre></td></tr></table></figure></p>
+<p>安装好express-generator包后，我们在命令行就可以使用express命令了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">express <span class="operator">-e</span> mysite</span><br></pre></td></tr></table></figure></p>
+<p>进入项目目录，下载依赖库，构建项目。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> mysite &amp;&amp; npm install</span><br></pre></td></tr></table></figure>
+<p>启动项目。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+<p>项目启动成功，打开浏览器 <a href="http://localhost:3000，就可以看到显示的页面了。" target="_blank" rel="external">http://localhost:3000，就可以看到显示的页面了。</a><br>这样非常简单地，我们就把一个最基本的Web应用做好了，就是几条命令而已。</p>
+<h2 id="目录结构">目录结构</h2><p>接下来，我们详细看一下express4项目的结构、配置和使用。</p>
+<pre><code>bin, 存放启动项目的脚本文件
+node_modules, 存放所有的项目依赖库。
+<span class="keyword">public</span>，静态文件(css,js,img)
+routes，路由文件(MVC中的C,controller)
+views，页面文件(Ejs模板)
+<span class="package"><span class="keyword">package</span>.<span class="title">json</span>，项目依赖配置及开发者信息
+<span class="title">app</span>.<span class="title">js</span>，应用核心配置文件</span>
+</code></pre><h2 id="package-json项目配置">package.json项目配置</h2><p>package.json用于项目依赖配置及开发者信息，scripts属性是用于定义操作命令的，可以非常方便的增加启动命令，比如默认的start，用npm start代表执行node ./bin/www命令。</p>
+<p>查看package.json文件。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">name</span>": <span class="value"><span class="string">"mysite"</span></span>,</span><br><span class="line">  "<span class="attribute">version</span>": <span class="value"><span class="string">"0.0.0"</span></span>,</span><br><span class="line">  "<span class="attribute">private</span>": <span class="value"><span class="literal">true</span></span>,</span><br><span class="line">  "<span class="attribute">scripts</span>": <span class="value">&#123;</span><br><span class="line">    "<span class="attribute">start</span>": <span class="value"><span class="string">"node ./bin/www"</span></span><br><span class="line">  </span>&#125;</span>,</span><br><span class="line">  "<span class="attribute">dependencies</span>": <span class="value">&#123;</span><br><span class="line">    "<span class="attribute">body-parser</span>": <span class="value"><span class="string">"~1.8.1"</span></span>,</span><br><span class="line">    "<span class="attribute">bootstrap</span>": <span class="value"><span class="string">"^3.3.4"</span></span>,</span><br><span class="line">    "<span class="attribute">cookie-parser</span>": <span class="value"><span class="string">"~1.3.3"</span></span>,</span><br><span class="line">    "<span class="attribute">debug</span>": <span class="value"><span class="string">"~2.0.0"</span></span>,</span><br><span class="line">    "<span class="attribute">ejs</span>": <span class="value"><span class="string">"~0.8.5"</span></span>,</span><br><span class="line">    "<span class="attribute">express</span>": <span class="value"><span class="string">"~4.9.0"</span></span>,</span><br><span class="line">    "<span class="attribute">jquery</span>": <span class="value"><span class="string">"^2.1.3"</span></span>,</span><br><span class="line">    "<span class="attribute">mongoose</span>": <span class="value"><span class="string">"^3.8.22"</span></span>,</span><br><span class="line">    "<span class="attribute">morgan</span>": <span class="value"><span class="string">"~1.3.0"</span></span>,</span><br><span class="line">    "<span class="attribute">serve-favicon</span>": <span class="value"><span class="string">"~2.1.3"</span></span><br><span class="line">  </span>&#125;</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<p>查看app.js文件，我们也能看到不少变化。在app.js中，原来调用connect库的部分都被其他的库所代替，例如serve-favicon、morgan、cookie-parser、body-parser。此外项目启动代码也被移到./bin/www的文件，www文件也是一个node的脚本，用于分离配置和启动程序。</p>
+<h1 id="增加jquery和bootstrap框架">增加jquery和bootstrap框架</h1><p>其实就是把js,css文件复制到项目中对应该的目录里。 包括4个文件：</p>
+<p>复制到public/stylesheets目录</p>
+<pre><code>bootstrap<span class="class">.min</span><span class="class">.css</span>
+</code></pre><p>复制到public/javascripts目录<br>    bootstrap.min.js<br>    jquery.min.js   </p>
+<p>接下来，我们把index.ejs页面切分成3个部分：header.ejs, index.ejs, footer.ejs</p>
+<pre><code><span class="tag">header</span><span class="class">.ejs</span>, 为html页面的头部区域
+index<span class="class">.ejs</span>, 为内容显示区域
+<span class="tag">footer</span>.ejs，为页面底部区域
+</code></pre><p>header.ejs<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span><span class="tag">&lt;<span class="title">%=:</span> <span class="attribute">title</span> %&gt;</span><span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Bootstrap --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">link</span> <span class="attribute">href</span>=<span class="value">"/stylesheets/bootstrap.min.css"</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">media</span>=<span class="value">"screen"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &lt;link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen"&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span> <span class="attribute">screen_capture_injected</span>=<span class="value">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>index.ejs<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">%</span> <span class="attribute">include</span> <span class="attribute">header.html</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span>&gt;</span><span class="tag">&lt;<span class="title">%=</span> <span class="attribute">title</span> %&gt;</span><span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">p</span>&gt;</span>Welcome to <span class="tag">&lt;<span class="title">%=</span> <span class="attribute">title</span> %&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">%</span> <span class="attribute">include</span> <span class="attribute">footer.html</span> %&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>footer.ejs<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"/javascripts/jquery.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"/javascripts/bootstrap.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>访问localhost:3000正确。</p>
+<p>就这样子，我们已经成功的使用了ejs模板的功能，把公共的头部和底部从页面中分离出来了。ejs最让我喜欢的是几乎不用再学新的语法，它还可以直接内嵌js，比如能够在&lt;%…%&gt;块中安排 JavaScript代码，利用最传统的方式 &lt;%=输出变量%&gt;（另外 &lt;%-输出变量是不会对 &amp; 等符号进行转义的）。</p>
+<p>而且，从界面看起来，bootstrap界面框架也成功引入了。</p>
+<h2 id="安装mongoDB">安装mongoDB</h2><p>Nodejs基于Javascript，MongoDB同样也是基于Javascript。而且他们的数据存储格式都是JSON，这就是为什么要把他们放在一起的原因了。<br>安装包下载地址：<a href="http://www.mongodb.org/downloads" target="_blank" rel="external">http://www.mongodb.org/downloads</a></p>
+<p>注意事先一定要先创建一个目录用来保存数据库文件。启动服务的时候也要—dbpath参数指定该位置。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --dbpath ./&lt;数据库目录&gt;</span><br></pre></td></tr></table></figure></p>
+<p>多种中间件可以用于连接node.js与MongoDB，目前比较常用的Mongoose。<br>首先，在之前利用express新建的helloworld项目目录安装Mongoose，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install mongoose --save</span><br></pre></td></tr></table></figure></p>
+<p>然后，就可以在node.js脚本中连接MongoDB数据库了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>); </span><br><span class="line">mongoose.connect(<span class="string">'mongodb://localhost/&lt;数据库名&gt;'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>注意，运行上面这个脚本时，必须确保MongoDB处于运行中。</p>
+<h1 id="案例：_让JSON数据直接入库MongoDB">案例： 让JSON数据直接入库MongoDB</h1><p>引入jquery.json插件</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/09/20/树莓派3：进阶/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">树莓派3：进阶</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="node-js快速建站" data-title="node.js快速建站" data-url="http://yoursite.com/2015/03/27/node-js快速建站/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"kingaza"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 何金强
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
