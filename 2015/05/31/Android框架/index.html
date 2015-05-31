@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android框架 | Mr. He</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这个topic实在很高大上，事实上我现在也只是整理总结最近的一些想法，另外也参考甚至直接引用了一些文章：
+
+Introduction to Model-View-Presenter on Android
+Reference Architecture for Android using RxJava">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android框架">
+<meta property="og:url" content="http://yoursite.com/2015/05/31/Android框架/index.html">
+<meta property="og:site_name" content="Mr. He">
+<meta property="og:description" content="这个topic实在很高大上，事实上我现在也只是整理总结最近的一些想法，另外也参考甚至直接引用了一些文章：
+
+Introduction to Model-View-Presenter on Android
+Reference Architecture for Android using RxJava">
+<meta property="og:image" content="http://konmik.github.io/images/mvp_everything_is_connected_with_everything.png">
+<meta property="og:image" content="http://konmik.github.io/images/mvp_mvp.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android框架">
+<meta name="twitter:description" content="这个topic实在很高大上，事实上我现在也只是整理总结最近的一些想法，另外也参考甚至直接引用了一些文章：
+
+Introduction to Model-View-Presenter on Android
+Reference Architecture for Android using RxJava">
+  
+    <link rel="alternative" href="/atom.xml" title="Mr. He" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">何金强</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kingaza" title="github">github</a>
+					        
+								<a class="linkedin" target="_blank" href="https://cn.linkedin.com/pub/jin-qiang-he/4a/456/a07" title="linkedin">linkedin</a>
+					        
+								<a class="mail" target="_blank" href="/kingaza@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Raspberry-Pi/" style="font-size: 20px;">Raspberry Pi</a><a href="/tags/android/" style="font-size: 10px;">android</a><a href="/tags/javascript/" style="font-size: 10px;">javascript</a><a href="/tags/node-js/" style="font-size: 10px;">node.js</a><a href="/tags/创业/" style="font-size: 10px;">创业</a><a href="/tags/智能硬件/" style="font-size: 20px;">智能硬件</a><a href="/tags/软件开发/" style="font-size: 15px;">软件开发</a><a href="/tags/项目管理/" style="font-size: 10px;">项目管理</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I am He. And I am working for Magnetic Resonance.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">何金强</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">何金强</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kingaza" title="github">github</a>
+			        
+						<a class="linkedin" target="_blank" href="https://cn.linkedin.com/pub/jin-qiang-he/4a/456/a07" title="linkedin">linkedin</a>
+			        
+						<a class="mail" target="_blank" href="/kingaza@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Android框架" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/05/31/Android框架/" class="article-date">
+  	<time datetime="2015-05-31T02:17:48.000Z" itemprop="datePublished">2015-05-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android框架
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发/">软件开发</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这个topic实在很高大上，事实上我现在也只是整理总结最近的一些想法，另外也参考甚至直接引用了一些文章：</p>
+<ul>
+<li><a href="http://konmik.github.io/introduction-to-model-view-presenter-on-android.html" target="_blank" rel="external">Introduction to Model-View-Presenter on Android</a></li>
+<li><a href="https://github.com/tehmou/rx-android-architecture" target="_blank" rel="external">Reference Architecture for Android using RxJava</a> </li>
+</ul>
+<a id="more"></a>
+<p>＃ KISS原则</p>
+<p>一般来说，软件开发会遵循<a href="https://people.apache.org/~fhanik/kiss.html" target="_blank" rel="external">Kiss原则</a>（Keep It Stupid Simple）<br>否则，如果开发者非要炫耀他的<em>架构设计</em>和代码编写能力，用一大堆晦涩难懂的代码来实现一个及其简单的功能，所留下的天书一般的代码是没有太多的可维护性了。<br>但这只是比较极端的情况。实际上，</p>
+<ul>
+<li>大部分的安卓应用只使用View-Model结构</li>
+<li>程序员现在更多的是和复杂的View打交道而不是解决业务逻辑。</li>
+</ul>
+<p>当你在应用中只使用Model-View时，到最后，你会发现“所有的事物都被连接到一起”。<br><img src="http://konmik.github.io/images/mvp_everything_is_connected_with_everything.png" alt=""></p>
+<p>＃ MVP<br><img src="http://konmik.github.io/images/mvp_mvp.png" alt=""><br>复杂的任务被分成细小的任务，并且很容易解决。越小的东西，bug越少，越容易debug，更好测试。在MVP模式下的View层将会变得简单，所以即便是他请求数据的时候也不需要回调函数。View逻辑变成十分直接。</p>
+<p>另外，当编写一个Actviity、Fragment、自定义View的时候，你会把所有的和后台任务相关的方法写在一个静态类或者外部类中。这样，你的Task不再和Activity联系在一起，这既不会导致内存泄露，也不依赖于Activity的重建。</p>
+<p>这里有一张表格，用于展示在configuration改变、Activity 重启、Out-Of-Memory时，不同的应用部分会发生什么？</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">情景 1</th>
+<th style="text-align:center">情景 2</th>
+<th style="text-align:center">情景 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">配置改变</td>
+<td style="text-align:center">Activity 重启</td>
+<td style="text-align:center">进程重启</td>
+</tr>
+<tr>
+<td style="text-align:center">对话框</td>
+<td style="text-align:center">重置</td>
+<td style="text-align:center">重置</td>
+<td style="text-align:center">重置</td>
+</tr>
+<tr>
+<td style="text-align:center">Activity, View, Fragment</td>
+<td style="text-align:center">保存/恢复</td>
+<td style="text-align:center">保存/恢复</td>
+<td style="text-align:center">保存/恢复</td>
+</tr>
+<tr>
+<td style="text-align:center">Fragment with setRetainInstance(true)</td>
+<td style="text-align:center">无变化</td>
+<td style="text-align:center">保存/恢复</td>
+<td style="text-align:center">保存/恢复</td>
+</tr>
+<tr>
+<td style="text-align:center">Static variables and threads</td>
+<td style="text-align:center">无变化</td>
+<td style="text-align:center">无变化</td>
+<td style="text-align:center">重置</td>
+</tr>
+</tbody>
+</table>
+<p>情景 1: 当用户切换屏幕、更改语言设置或者链接外部的模拟器时，往往意味着设置改变。 相关更多请阅读<a href="http://developer.android.com/reference/android/R.attr.html#configChanges" target="_blank" rel="external">这里</a>。</p>
+<p>情景 2:Activity的重启发生在当用户在开发者选项中选中了“Don’t keep activities”（“中文下为 不保留活动”）的复选框，然后另一个Activity在最顶上的时候。</p>
+<p>情景 3: 进程的重启发生在应用运行在后台，但是这个时候内存不够的情况下。</p>
+<p>这里有若干种方法处理后台任务，但是它们的可靠性都不及MVP。</p>
+<p>现在你可以发现，一个调用了setRetainInstance(true)的Fragment也不奏效，我们还是需要保存/恢复fragment的状态，所以为简化问题，我们暂不考虑上述情况的Fragment。<a href="http://en.wikipedia.org/wiki/Occam&#39;s_razor" target="_blank" rel="external">Occam’s razor</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">配置改变,   Activity重启</th>
+<th style="text-align:center">进程重启</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Activity, View, Fragment, DialogFragment</td>
+<td style="text-align:center">保存/恢复</td>
+<td style="text-align:center">保存/恢复</td>
+</tr>
+<tr>
+<td style="text-align:center">Static variables and threads</td>
+<td style="text-align:center">无变化</td>
+<td style="text-align:center">重置</td>
+</tr>
+</tbody>
+</table>
+<p>现在，看上去更舒服了，我们只需要写两段代码为了恢复应用：</p>
+<ul>
+<li>保存/恢复 for Activity, View, Fragment, DialogFragment;</li>
+<li>重启后台请求由于进程重启</li>
+</ul>
+<p>第一个部分,用Android的API可以实现。第二个部分，就是Presenter的作用了。Presenter将会记住有哪些请求需要执行，当进程在执行过程中重启时，Presenter将会出现执行它们。</p>
+<p><a href="https://github.com/konmik/MVPExamples/tree/master/example01" target="_blank" rel="external">例子 01</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainPresenter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_NAME = <span class="string">"Chuck Norris"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> ServerAPI.Item[] items;</span><br><span class="line">	<span class="keyword">private</span> Throwable error;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> MainActivity view;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MainPresenter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		App.getServerAPI()</span><br><span class="line">			.getItems(DEFAULT_NAME.split(<span class="string">"\\s+"</span>)[<span class="number">0</span>], DEFAULT_NAME.split(<span class="string">"\\s+"</span>)[<span class="number">1</span>])</span><br><span class="line">			.delay(<span class="number">1</span>, TimeUnit.SECONDS)</span><br><span class="line">			.observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">			.subscribe(<span class="keyword">new</span> Action1&lt;ServerAPI.Response&gt;() &#123;</span><br><span class="line">				<span class="annotation">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(ServerAPI.Response response)</span> </span>&#123;</span><br><span class="line">					items = response.items;</span><br><span class="line">					publish();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;, <span class="keyword">new</span> Action1&lt;Throwable&gt;() &#123;</span><br><span class="line">				<span class="annotation">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Throwable throwable)</span> </span>&#123;</span><br><span class="line">					error = throwable;</span><br><span class="line">					publish();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTakeView</span><span class="params">(MainActivity view)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.view = view;</span><br><span class="line">		publish();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">publish</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (view != <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (items != <span class="keyword">null</span>)</span><br><span class="line">				view.onItemsNext(items);</span><br><span class="line">			<span class="function"><span class="keyword">else</span> <span class="title">if</span> <span class="params">(error != <span class="keyword">null</span>)</span></span><br><span class="line">				view.<span class="title">onItemsError</span><span class="params">(error)</span></span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从严格意义上来说，MainPresenter有三个事件处理线程： <em>onNext</em>, <em>onError</em>, <em>onTakeView</em>。他们调用了<code>publish()</code>方法，<em>onNext</em> 或 <em>onError</em>的值将会在MainActivity中发布，而不是由onTakeView提供。      </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> ArrayAdapter&lt;ServerAPI.Item&gt; adapter;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> MainPresenter presenter;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">		setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">		ListView listView = (ListView)findViewById(R.id.listView);</span><br><span class="line">		listView.setAdapter(adapter = <span class="keyword">new</span> ArrayAdapter&lt;&gt;(<span class="keyword">this</span>, R.layout.item));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (presenter == <span class="keyword">null</span>)</span><br><span class="line">			presenter = <span class="keyword">new</span> MainPresenter();</span><br><span class="line">		presenter.onTakeView(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.onDestroy();</span><br><span class="line">		presenter.onTakeView(<span class="keyword">null</span>);</span><br><span class="line">		<span class="keyword">if</span> (isFinishing())</span><br><span class="line">			presenter = <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemsNext</span><span class="params">(ServerAPI.Item[] items)</span> </span>&#123;</span><br><span class="line">		adapter.clear();</span><br><span class="line">		adapter.addAll(items);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemsError</span><span class="params">(Throwable throwable)</span> </span>&#123;</span><br><span class="line">		Toast.makeText(<span class="keyword">this</span>, throwable.getMessage(), Toast.LENGTH_LONG).show();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>MainActivty构建了MainPresenter，将其维持在onCreate/onDestroy周期外，MainActivity持有MainPresenter的静态引用，所以每一个进程由于OOM重启时，MainActivity可以确认Presenter是否仍然存在，必要时创建。</p>
+<h2 id="MVC">MVC</h2><p>MVC和MVP完全不同，不能解决接口开发者面对的问题。<br><em>MVC</em>是</p>
+<ul>
+<li><strong>Model</strong>代表着应用程序的内部状态。它可以负责存储，当然也可以不考虑。</li>
+<li><strong>View</strong>是唯一的与MVP相同的部分 - 它用于将模型呈现在屏幕上，应用程序的一部分。</li>
+<li><strong>Controller</strong>表示输入装置，如键盘，鼠标或操纵杆。</li>
+</ul>
+<p>MVC在过去以键盘为驱动的应用中（比如游戏），是比较好的模式。没有窗口和图形用户界面的交互——应用接受输入(Controller)，维持状态（Model），产生输出（View）。同样，数据和控制的关系是这样的。<strong>controller -&gt; model -&gt; view</strong>。这种模式是在Android绝对无用。</p>
+<p>这里有一些关于MVC的困惑。人们（Web开发人员）觉得他们使用MVC，而实际上，他们使用的MVP。许多Android开发者认为Controller是用于控制View的，所以他们试图在创建View时，从视图（View）中提取视图逻辑，交由专门的控制器控制。</p>
+<h1 id="MVVM_with_RxJava">MVVM with RxJava</h1><p>This is an ambitious example project of what can be done with RxJava to create an app based on streams of data.<br>￼<br>In the repository you will find several library-like solutions that might or might not be reusable. Parts of the architecture are, however, already used in real applications, and as the parts mature they are likely to be extracted into separate libraries. If you follow the general guidelines illustrated here, your application should be in a position to have portions of it easily replaced as more or less official solutions emerge. The architecture is designed to support large-scale applications with remote processes, such as those used in widgets.<br>The project uses the open GitHub repositories API. You might hit a rate limit if you use the API extensively.</p>
+<p>Application Structure<br>To use the app start writing a search in the text box of at least 3 characters. This will trigger a request, the five first results of which will be shown as a list. The input also throttled in a way that makes it trigger when the user stops typing. This is a very good basic example of Rx streams.<br>.filter((string) -&gt; string.length() &gt; 2) .throttleLast(500, TimeUnit.MILLISECONDS)<br>The input is turned into a series of strings in the View layer, which the View Model then processes.<br>A network request to the search API is triggered based on the search string, which happens in the Data Layer. The results of the request are written in two stores, the GitHubRepositorySearchStore and GitHubRepositoryStore. The search store contains only the ids of the results of the query, while the actual repository POJOs are written in the repository store. A repository POJO can thus be contained in multiple searches, which can often be the case if the first match stays the same, for instance.<br>In this example the data from the backend is likely to stay the same, but this structure nevertheless enables us to keep the data consistent across the application—even if the same data object is updated from multiple APIs.<br>switchOnNext is used instead of flatMap to make sure we discard the results of the previous request as soon as a new one is made.</p>
+<p>Tests<br>You can run the test(s) on command line in the project folder:<br>./gradlew test<br>Currently the tests are not extensive, but we are working on it. The View Models in particular will be fully unit tested.</p>
+<p>View Models<br>This architecture makes use of View Models, which are not commonly used in Android applications.<br>View Model (VM) encapsulates the state of a view and the logic related to it into a separate class. This class is independent of the UI platform and can be used as the “engine” for several different fragments. The view is a dumb rendering component that displays the state as constructed in the VM.<br>Possible values that the view model can expose:<br>    •    Background color<br>    •    Page title text resource id<br>    •    Selected tab index<br>    •    Animation state of a sliding menu<br>The same VM can be used with entirely different views—for instance one on tablet and another one on mobile. The VM is also relatively easy to unit test and immune to changes in the platform.</p>
+<p>An Android Approach to View Models<br>For our purposes let us treat fragments as the entry point to the view layer. The view layer is an abstraction and is not to be confused with the Android View class, the descendants of which will still be used for displaying the data once the Fragment has received the latest values from the VM. The point is our fragments will not contain any program logic.<br>The goal is to take all data retrieval and data processing away from the fragments and encapsulate it into a nice and clean View Model. This VM can then be unit tested and re-used where ever applicable.<br>In this example project we use RxJava to establish the necessary observable/observer patterns to connect the view model to the view, but an alternative solution could be used as well.</p>
+<p>The View Model Life Cycle<br>View Model has two important responsibilities:<br>    •    Retrieve data from a data source<br>    •    Expose the data as simple values to the view layer (fragments)<br>The suggested VM life cycle is much like that of fragment, and not by coincidence.<br>￼<br>The data layer offers a permanent subscription to a data source, and it pushes a new item whenever new data arrives. This connection should be established in onViewCreated and released in onViewDestroyed. More details of a good data layer architecture will follow in another article.<br>It is a good idea to separate the data subscription and the data retrieval. You first passively subscribe to a data stream, and then you use another method to start the retrieval of new items for that particular stream (most commonly via http). This way, if desired, you are able to refresh the data multiple times without needing to break the subscription—or in some cases not to refresh it at all but use the latest cached value.</p>
+<p>Exposing View Model Properties<br>Strictly speaking there are two kinds of properties<br>    •    Actual properties, such as boolean flags<br>    •    Events<br>In RxJava the actual properties would typically be stored as BehaviorSubjects and exposed as Observables. This way whoever subscribes to the property will immediately receive the latest value and update the UI, even if the value had been updated while paused.<br>In the second case, where the property is used for events, you might want to opt for a simple PublishSubject that has no “memory”. When onResume is called the UI would not receive any events that occurred while paused.</p>
+<p>Threading and Testing View Models<br>While it is possible to use TestSchedulers, I believe it is best to keep the VMs simple and not to include threading in them. If there is a risk some of the inputs to the VM come from different threads you can use thread-safe types or declare fields as volatile.<br>The safest way to ensure the main thread is to use .observeOn(AndroidSchdulers.mainThread()) when the fragment subscribes to the VM properties. This makes the subscription to always trigger asynchronously, but usually it is more of a benefit than a disadvantage.</p>
+<p>Bridging Platform Components<br>Most of Android components are quite hideous and of poor quality, so for an experienced developer finding the excuse to write them from scratch is not difficult. However, there are cases where it is necessary.<br>With a ListView the easiest way to use a view model is have a fragment pass the list values to the list adapter when ever new ones appear. The entire adapter is thus considered to be part of the view layer. Usually this approach is enough - if your need is more complex you may need to expose the entire view model to a custom adapter and add values as necessary.<br>ViewPager with fragments is a little trickier, and I would not recommend using a VM to orchestrate it. It is not easy to keep track of the selected page, let alone to change it through a VM. In my ideal world even all of the state and logic regarding the page change dragging would be in the VM and the component itself would only send the touch events to the VM. However, because of the defensive style in which the platform components are written, this is virtually impossible to do. I would love to see a completely custom ViewPager with a proper VM, but until this happens keep it simple.<br>Tabs with fragments are not even officially supported by the SDK component, and I have had good experiences writing custom ones—as long as you remember that the “replace” method in FragmentTransaction does not call all of the fragment life cycle methods you might assume it to call.</p>
+<p>Data Layer<br>The application specific Data Layer is responsible for fetching and storing data. A fetch operation updates the centrally stored values and everyone who is interested will get the update.</p>
+<p>Consuming Data in the View<br>When data comes in we render it in the view, simple as that. It does not actually matter what triggered the update of the data—it could be a background sync, user pressing a button or a change in another part of the UI. The data can arrive at any given time and any number of times.<br>In RxJava we can use a continuous subscription to establish the stream of data. This means the subscription for incoming data is not disconnected until the view is hidden and it never errors or completes.<br>Errors in fetching the data are handled through other mechanisms, as explained in the fetch section.</p>
+<p>Store<br>Store is a container that allows subscribing to data of a particular type. Whenever data of the requested type becomes available, a new immutable value is pushed as onNext to all applicable subscribers.<br>The concrete backing of a Store can be a static in-memory hash, plain SQLite or a content provider. In case the same data is to be used from multiple processes there needs to be a mechanism that detects changes in the persisted data and propagates them to all subscribers. Android content providers, of course, do this automatically, making them the perfect candidates.<br>For caching purposes it is usually good to include timestamps into the structure of the Store. Determining when to update the data is not conceptually a concern of the Store, though, it simply holds the data.<br>In this example project the Stores are backed by SQLite ContentProviders, which serialize the values as JSON strings with an id column for queries. This could be optimized by adding columns for all fields of the POJO, but on the other hand it adds boilerplate code that has to be maintained. In case of performance problems the implementation can be changed without affecting the rest of the application.</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/05/13/内部创业/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">内部创业</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Android框架" data-title="Android框架" data-url="http://yoursite.com/2015/05/31/Android框架/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"kingaza"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 何金强
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
