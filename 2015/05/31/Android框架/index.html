@@ -3,31 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android框架 | Mr. He</title>
+  <title>MVP on Android | Mr. He</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这个topic实在很高大上，本来也不是我现在能完全掌握和驾驭的。这里只是整理总结最近的一些想法心得，事实上也参考甚至直接引用了一些文章：
-
-Best practices in Android development
-Introduction to Model-View-Presenter on Android
-Reference Architecture for Android using RxJ">
+  <meta name="description" content="最近在在研究一个android项目RhymeCity，很有收获。这是一个运用了MVP模式的实验程序，其中采用了Dagger、Retrofit、Butterknife等第三方库来优化代码。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android框架">
+<meta property="og:title" content="MVP on Android">
 <meta property="og:url" content="http://yoursite.com/2015/05/31/Android框架/index.html">
 <meta property="og:site_name" content="Mr. He">
-<meta property="og:description" content="这个topic实在很高大上，本来也不是我现在能完全掌握和驾驭的。这里只是整理总结最近的一些想法心得，事实上也参考甚至直接引用了一些文章：
-
-Best practices in Android development
-Introduction to Model-View-Presenter on Android
-Reference Architecture for Android using RxJ">
+<meta property="og:description" content="最近在在研究一个android项目RhymeCity，很有收获。这是一个运用了MVP模式的实验程序，其中采用了Dagger、Retrofit、Butterknife等第三方库来优化代码。">
 <meta property="og:image" content="http://konmik.github.io/images/mvp_everything_is_connected_with_everything.png">
 <meta property="og:image" content="http://konmik.github.io/images/mvp_mvp.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android框架">
-<meta name="twitter:description" content="这个topic实在很高大上，本来也不是我现在能完全掌握和驾驭的。这里只是整理总结最近的一些想法心得，事实上也参考甚至直接引用了一些文章：
-
-Best practices in Android development
-Introduction to Model-View-Presenter on Android
-Reference Architecture for Android using RxJ">
+<meta name="twitter:title" content="MVP on Android">
+<meta name="twitter:description" content="最近在在研究一个android项目RhymeCity，很有收获。这是一个运用了MVP模式的实验程序，其中采用了Dagger、Retrofit、Butterknife等第三方库来优化代码。">
   
     <link rel="alternative" href="/atom.xml" title="Mr. He" type="application/atom+xml">
   
@@ -216,7 +204,7 @@ Reference Architecture for Android using RxJ">
         
   
     <h1 class="article-title" itemprop="name">
-      Android框架
+      MVP on Android
     </h1>
   
 
@@ -236,126 +224,16 @@ Reference Architecture for Android using RxJ">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这个topic实在很高大上，本来也不是我现在能完全掌握和驾驭的。这里只是整理总结最近的一些想法心得，事实上也参考甚至直接引用了一些文章：</p>
-<ul>
-<li><a href="https://github.com/futurice/android-best-practices" target="_blank" rel="external">Best practices in Android development</a></li>
-<li><a href="http://konmik.github.io/introduction-to-model-view-presenter-on-android.html" target="_blank" rel="external">Introduction to Model-View-Presenter on Android</a></li>
-<li><a href="https://github.com/tehmou/rx-android-architecture" target="_blank" rel="external">Reference Architecture for Android using RxJava</a> </li>
-</ul>
+        <p>最近在在研究一个android项目<a href="https://github.com/mattlogan/RhymeCity" target="_blank" rel="external">RhymeCity</a>，很有收获。这是一个运用了MVP模式的实验程序，其中采用了Dagger、Retrofit、Butterknife等第三方库来优化代码。</p>
 <a id="more"></a>
-<h1 id="原则">原则</h1><p>一般来说，软件开发会遵循<a href="https://people.apache.org/~fhanik/kiss.html" target="_blank" rel="external">Kiss原则</a>（Keep It Stupid Simple）<br>否则，如果开发者非要炫耀他的<em>架构设计</em>和代码编写能力，用一大堆晦涩难懂的代码来实现一个及其简单的功能，所留下的天书一般的代码是没有太多的可维护性了。<br>但这只是比较极端的情况。实际上是另外一种极端情况，</p>
-<ul>
-<li>大部分的安卓应用只使用View-Model结构</li>
-<li>程序员现在更多的是和复杂的View打交道而不是解决业务逻辑。</li>
-</ul>
-<p>然后，当应用中只使用Model-View时，到最后，你会发现“所有的事物都被连接到一起”。<br><img src="http://konmik.github.io/images/mvp_everything_is_connected_with_everything.png" alt=""></p>
-<p>Fragments应该作为你实现UI界面默认选择。你可以重复使用Fragments用户接口来组合成你的应用。我们强烈推荐使用Fragments而不是activity来呈现UI界面，理由如下：</p>
-<ul>
-<li><em>提供多窗格布局解决方案</em> Fragments的引入主要将手机应用延伸到平板电脑，所以在平板电脑上你可能有A、B两个窗格，但是在手机应用上A、B可能分别充满整个屏幕。如果你的应用在最初就使用了fragments，那么以后将你的应用适配到其他不同尺寸屏幕就会非常简单。</li>
-<li><em>屏幕间数据通信</em> 从一个Activity发送复杂数据(例如Java对象)到另外一个Activity，Android的API并没有提供合适的方法。不过使用Fragment，你可以使用 一个activity实例作为这个activity子fragments的通信通道。即使这样比Activity与Activity间的通信好，你也想考虑使用Event Bus架构，使用如Otto或者 greenrobot EventBus作为更简洁的实现。如果你希望避免添加另外一个类库，RxJava同样可以实现一个Event Bus。</li>
-<li><em>Fragments</em> 一般通用的不只有UI 你可以有一个没有界面的fragment作为Activity提供后台工作。 进一步你可以使用这个特性来创建一个fragment包含改变其它fragment的逻辑 而不是把这个逻辑放在activity中。</li>
-<li><em>甚至ActionBar都可以使用内部fragment来管理</em> 你可以选择使用一个没有UI界面的fragment来专门管理ActionBar，或者你可以选择使用在每个Fragment中添加它自己的action来作为父Activity的ActionBar参考。</li>
-</ul>
-<p>在一个架构级别，你的APP应该有一个顶级的activity来包含绝大部分业务相关的fragment。你也可能还有一些辅助的activity，这些辅助的activity与主activity 通信很简单限制在这两种方法 Intent.setData()或Intent.setAction()或类似的方法。</p>
-<h1 id="Java包结构和MVC">Java包结构和MVC</h1><p>Android 应用程序在架构上大致是Java中的<a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" target="_blank" rel="external">Model-View-Controller</a>结构。在Android 中 Fragment和Activity通常上是控制器类(<a href="http://www.informit.com/articles/article.aspx?p=2126865)。换句话说，他们是用户接口的部分，同样也是Views视图的部分。" target="_blank" rel="external">http://www.informit.com/articles/article.aspx?p=2126865)。换句话说，他们是用户接口的部分，同样也是Views视图的部分。</a></p>
-<p>正是因为如此，才很难严格的将fragments (或者 activities) 严格的划分成控制器controlloers还是视图views。最还是将它们放在自己单独的<code>fragments</code>包中。只要你遵循之前提到的建议，Activities 则可以放在顶级目录下。若果你规划有2到3个以上的activity，那么还是同样新建一个<code>activities</code>包吧。</p>
-<p>然而，这种架构可以看做是另一种形式的MVC，包含要被解析API响应的JSON数据，来填充的POJO的<code>models</code>包中，和一个<code>views</code>包来包含你的自定义视图、通知、导航视图，widgets等等。适配器Adapter是在数据和视图之间。然而他们通常需要通过<code>getView()</code>方法来导出一些视图，所以你可以将<code>adapters</code>包放在<code>views</code>包里面。</p>
-<p>一些控制器角色的类是应用程序级别的，同时是接近系统的。这些类放在<code>managers</code>包下面。一些繁杂的数据处理类，比如说”DateUtils”,放在<code>utils</code>包下面。与后端交互负责网络处理类，放在<code>network</code>包下面。</p>
-<p>总而言之，以最接近用户而不是最接近后端去安排他们。</p>
+<p>先简(zhuang)单(bi)地点评一下现在的一些模式。<br>据说，现在大部分的安卓应用只使用View-Model结构，结果就是程序员现在更多的是和复杂的View打交道而不是解决业务逻辑。<br>我觉得，从MFC过来的程序员很习惯这种代码组织方式。但是，当应用中只使用Model-View时，“所有的事物都被连接到一起”了。<br><img src="http://konmik.github.io/images/mvp_everything_is_connected_with_everything.png" alt=""></p>
+<p>然后就是MVC。Android 应用程序在架构上大致是Java中的<a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" target="_blank" rel="external">Model-View-Controller</a>结构。因此对于Java老鸟来说，这是一种很自然的选择。</p>
+<p>在Android 中 Fragment和Activity通常上是控制器类(<a href="http://www.informit.com/articles/article.aspx?p=2126865)。换句话说，他们是用户接口的部分，同样也是Views视图的部分。" target="_blank" rel="external">http://www.informit.com/articles/article.aspx?p=2126865)。换句话说，他们是用户接口的部分，同样也是Views视图的部分。</a></p>
+<p>比如，<a href="https://github.com/futurice/android-best-practices" target="_blank" rel="external">Best practices in Android development</a>就推荐了这么的代码结构</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">com<span class="class">.futurice</span><span class="class">.project</span></span><br><span class="line">├─ network</span><br><span class="line">├─ models</span><br><span class="line">├─ managers</span><br><span class="line">├─ utils</span><br><span class="line">├─ fragments</span><br><span class="line">└─ views</span><br><span class="line">   ├─ adapters</span><br><span class="line">   ├─ actionbar</span><br><span class="line">   ├─ widgets</span><br><span class="line">   └─ notifications</span><br></pre></td></tr></table></figure>
-<h1 id="MVP">MVP</h1><p><img src="http://konmik.github.io/images/mvp_mvp.png" alt=""><br>复杂的任务被分成细小的任务，并且很容易解决。越小的东西，bug越少，越容易debug，更好测试。在MVP模式下的View层将会变得简单，所以即便是他请求数据的时候也不需要回调函数。View逻辑变成十分直接。</p>
-<p>另外，当编写一个Actviity、Fragment、自定义View的时候，你会把所有的和后台任务相关的方法写在一个静态类或者外部类中。这样，你的Task不再和Activity联系在一起，这既不会导致内存泄露，也不依赖于Activity的重建。</p>
-<p>这里有一张表格，用于展示在configuration改变、Activity 重启、Out-Of-Memory时，不同的应用部分会发生什么？</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">情景 1</th>
-<th style="text-align:center">情景 2</th>
-<th style="text-align:center">情景 3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">配置改变</td>
-<td style="text-align:center">Activity 重启</td>
-<td style="text-align:center">进程重启</td>
-</tr>
-<tr>
-<td style="text-align:center">对话框</td>
-<td style="text-align:center">重置</td>
-<td style="text-align:center">重置</td>
-<td style="text-align:center">重置</td>
-</tr>
-<tr>
-<td style="text-align:center">Activity, View, Fragment</td>
-<td style="text-align:center">保存/恢复</td>
-<td style="text-align:center">保存/恢复</td>
-<td style="text-align:center">保存/恢复</td>
-</tr>
-<tr>
-<td style="text-align:center">Fragment with setRetainInstance(true)</td>
-<td style="text-align:center">无变化</td>
-<td style="text-align:center">保存/恢复</td>
-<td style="text-align:center">保存/恢复</td>
-</tr>
-<tr>
-<td style="text-align:center">Static variables and threads</td>
-<td style="text-align:center">无变化</td>
-<td style="text-align:center">无变化</td>
-<td style="text-align:center">重置</td>
-</tr>
-</tbody>
-</table>
-<p>情景 1: 当用户切换屏幕、更改语言设置或者链接外部的模拟器时，往往意味着设置改变。 相关更多请阅读<a href="http://developer.android.com/reference/android/R.attr.html#configChanges" target="_blank" rel="external">这里</a>。</p>
-<p>情景 2:Activity的重启发生在当用户在开发者选项中选中了“Don’t keep activities”（“中文下为 不保留活动”）的复选框，然后另一个Activity在最顶上的时候。</p>
-<p>情景 3: 进程的重启发生在应用运行在后台，但是这个时候内存不够的情况下。</p>
-<p>这里有若干种方法处理后台任务，但是它们的可靠性都不及MVP。</p>
-<p>现在你可以发现，一个调用了setRetainInstance(true)的Fragment也不奏效，我们还是需要保存/恢复fragment的状态，所以为简化问题，我们暂不考虑上述情况的Fragment。<a href="http://en.wikipedia.org/wiki/Occam&#39;s_razor" target="_blank" rel="external">Occam’s razor</a></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">配置改变,   Activity重启</th>
-<th style="text-align:center">进程重启</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Activity, View, Fragment, DialogFragment</td>
-<td style="text-align:center">保存/恢复</td>
-<td style="text-align:center">保存/恢复</td>
-</tr>
-<tr>
-<td style="text-align:center">Static variables and threads</td>
-<td style="text-align:center">无变化</td>
-<td style="text-align:center">重置</td>
-</tr>
-</tbody>
-</table>
-<p>现在，看上去更舒服了，我们只需要写两段代码为了恢复应用：</p>
-<ul>
-<li>保存/恢复 for Activity, View, Fragment, DialogFragment;</li>
-<li>重启后台请求由于进程重启</li>
-</ul>
-<p>第一个部分,用Android的API可以实现。第二个部分，就是Presenter的作用了。Presenter将会记住有哪些请求需要执行，当进程在执行过程中重启时，Presenter将会出现执行它们。</p>
-<p><a href="https://github.com/konmik/MVPExamples/tree/master/example01" target="_blank" rel="external">例子 01</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainPresenter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_NAME = <span class="string">"Chuck Norris"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> ServerAPI.Item[] items;</span><br><span class="line">	<span class="keyword">private</span> Throwable error;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> MainActivity view;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MainPresenter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		App.getServerAPI()</span><br><span class="line">			.getItems(DEFAULT_NAME.split(<span class="string">"\\s+"</span>)[<span class="number">0</span>], DEFAULT_NAME.split(<span class="string">"\\s+"</span>)[<span class="number">1</span>])</span><br><span class="line">			.delay(<span class="number">1</span>, TimeUnit.SECONDS)</span><br><span class="line">			.observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">			.subscribe(<span class="keyword">new</span> Action1&lt;ServerAPI.Response&gt;() &#123;</span><br><span class="line">				<span class="annotation">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(ServerAPI.Response response)</span> </span>&#123;</span><br><span class="line">					items = response.items;</span><br><span class="line">					publish();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;, <span class="keyword">new</span> Action1&lt;Throwable&gt;() &#123;</span><br><span class="line">				<span class="annotation">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Throwable throwable)</span> </span>&#123;</span><br><span class="line">					error = throwable;</span><br><span class="line">					publish();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTakeView</span><span class="params">(MainActivity view)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.view = view;</span><br><span class="line">		publish();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">publish</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (view != <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (items != <span class="keyword">null</span>)</span><br><span class="line">				view.onItemsNext(items);</span><br><span class="line">			<span class="function"><span class="keyword">else</span> <span class="title">if</span> <span class="params">(error != <span class="keyword">null</span>)</span></span><br><span class="line">				view.<span class="title">onItemsError</span><span class="params">(error)</span></span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从严格意义上来说，MainPresenter有三个事件处理线程： <em>onNext</em>, <em>onError</em>, <em>onTakeView</em>。他们调用了<code>publish()</code>方法，<em>onNext</em> 或 <em>onError</em>的值将会在MainActivity中发布，而不是由onTakeView提供。      </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> ArrayAdapter&lt;ServerAPI.Item&gt; adapter;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> MainPresenter presenter;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">		setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">		ListView listView = (ListView)findViewById(R.id.listView);</span><br><span class="line">		listView.setAdapter(adapter = <span class="keyword">new</span> ArrayAdapter&lt;&gt;(<span class="keyword">this</span>, R.layout.item));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (presenter == <span class="keyword">null</span>)</span><br><span class="line">			presenter = <span class="keyword">new</span> MainPresenter();</span><br><span class="line">		presenter.onTakeView(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.onDestroy();</span><br><span class="line">		presenter.onTakeView(<span class="keyword">null</span>);</span><br><span class="line">		<span class="keyword">if</span> (isFinishing())</span><br><span class="line">			presenter = <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemsNext</span><span class="params">(ServerAPI.Item[] items)</span> </span>&#123;</span><br><span class="line">		adapter.clear();</span><br><span class="line">		adapter.addAll(items);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemsError</span><span class="params">(Throwable throwable)</span> </span>&#123;</span><br><span class="line">		Toast.makeText(<span class="keyword">this</span>, throwable.getMessage(), Toast.LENGTH_LONG).show();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>MainActivty构建了MainPresenter，将其维持在onCreate/onDestroy周期外，MainActivity持有MainPresenter的静态引用，所以每一个进程由于OOM重启时，MainActivity可以确认Presenter是否仍然存在，必要时创建。</p>
-<h1 id="响应式编程与MVVM">响应式编程与MVVM</h1><p>￼<br>Application Structure<br>To use the app start writing a search in the text box of at least 3 characters. This will trigger a request, the five first results of which will be shown as a list. The input also throttled in a way that makes it trigger when the user stops typing. This is a very good basic example of Rx streams.<br>.filter((string) -&gt; string.length() &gt; 2) .throttleLast(500, TimeUnit.MILLISECONDS)<br>The input is turned into a series of strings in the View layer, which the View Model then processes.<br>A network request to the search API is triggered based on the search string, which happens in the Data Layer. The results of the request are written in two stores, the GitHubRepositorySearchStore and GitHubRepositoryStore. The search store contains only the ids of the results of the query, while the actual repository POJOs are written in the repository store. A repository POJO can thus be contained in multiple searches, which can often be the case if the first match stays the same, for instance.<br>In this example the data from the backend is likely to stay the same, but this structure nevertheless enables us to keep the data consistent across the application—even if the same data object is updated from multiple APIs.<br>switchOnNext is used instead of flatMap to make sure we discard the results of the previous request as soon as a new one is made.</p>
-<p>Tests<br>You can run the test(s) on command line in the project folder:<br>./gradlew test<br>Currently the tests are not extensive, but we are working on it. The View Models in particular will be fully unit tested.</p>
-<p>View Models<br>This architecture makes use of View Models, which are not commonly used in Android applications.<br>View Model (VM) encapsulates the state of a view and the logic related to it into a separate class. This class is independent of the UI platform and can be used as the “engine” for several different fragments. The view is a dumb rendering component that displays the state as constructed in the VM.<br>Possible values that the view model can expose:<br>    •    Background color<br>    •    Page title text resource id<br>    •    Selected tab index<br>    •    Animation state of a sliding menu<br>The same VM can be used with entirely different views—for instance one on tablet and another one on mobile. The VM is also relatively easy to unit test and immune to changes in the platform.</p>
-<p>An Android Approach to View Models<br>For our purposes let us treat fragments as the entry point to the view layer. The view layer is an abstraction and is not to be confused with the Android View class, the descendants of which will still be used for displaying the data once the Fragment has received the latest values from the VM. The point is our fragments will not contain any program logic.<br>The goal is to take all data retrieval and data processing away from the fragments and encapsulate it into a nice and clean View Model. This VM can then be unit tested and re-used where ever applicable.<br>In this example project we use RxJava to establish the necessary observable/observer patterns to connect the view model to the view, but an alternative solution could be used as well.</p>
-<p>The View Model Life Cycle<br>View Model has two important responsibilities:<br>    •    Retrieve data from a data source<br>    •    Expose the data as simple values to the view layer (fragments)<br>The suggested VM life cycle is much like that of fragment, and not by coincidence.<br>￼<br>The data layer offers a permanent subscription to a data source, and it pushes a new item whenever new data arrives. This connection should be established in onViewCreated and released in onViewDestroyed. More details of a good data layer architecture will follow in another article.<br>It is a good idea to separate the data subscription and the data retrieval. You first passively subscribe to a data stream, and then you use another method to start the retrieval of new items for that particular stream (most commonly via http). This way, if desired, you are able to refresh the data multiple times without needing to break the subscription—or in some cases not to refresh it at all but use the latest cached value.</p>
-<p>Exposing View Model Properties<br>Strictly speaking there are two kinds of properties<br>    •    Actual properties, such as boolean flags<br>    •    Events<br>In RxJava the actual properties would typically be stored as BehaviorSubjects and exposed as Observables. This way whoever subscribes to the property will immediately receive the latest value and update the UI, even if the value had been updated while paused.<br>In the second case, where the property is used for events, you might want to opt for a simple PublishSubject that has no “memory”. When onResume is called the UI would not receive any events that occurred while paused.</p>
-<p>Threading and Testing View Models<br>While it is possible to use TestSchedulers, I believe it is best to keep the VMs simple and not to include threading in them. If there is a risk some of the inputs to the VM come from different threads you can use thread-safe types or declare fields as volatile.<br>The safest way to ensure the main thread is to use .observeOn(AndroidSchdulers.mainThread()) when the fragment subscribes to the VM properties. This makes the subscription to always trigger asynchronously, but usually it is more of a benefit than a disadvantage.</p>
-<p>Bridging Platform Components<br>Most of Android components are quite hideous and of poor quality, so for an experienced developer finding the excuse to write them from scratch is not difficult. However, there are cases where it is necessary.<br>With a ListView the easiest way to use a view model is have a fragment pass the list values to the list adapter when ever new ones appear. The entire adapter is thus considered to be part of the view layer. Usually this approach is enough - if your need is more complex you may need to expose the entire view model to a custom adapter and add values as necessary.<br>ViewPager with fragments is a little trickier, and I would not recommend using a VM to orchestrate it. It is not easy to keep track of the selected page, let alone to change it through a VM. In my ideal world even all of the state and logic regarding the page change dragging would be in the VM and the component itself would only send the touch events to the VM. However, because of the defensive style in which the platform components are written, this is virtually impossible to do. I would love to see a completely custom ViewPager with a proper VM, but until this happens keep it simple.<br>Tabs with fragments are not even officially supported by the SDK component, and I have had good experiences writing custom ones—as long as you remember that the “replace” method in FragmentTransaction does not call all of the fragment life cycle methods you might assume it to call.</p>
-<p>Data Layer<br>The application specific Data Layer is responsible for fetching and storing data. A fetch operation updates the centrally stored values and everyone who is interested will get the update.</p>
-<p>Consuming Data in the View<br>When data comes in we render it in the view, simple as that. It does not actually matter what triggered the update of the data—it could be a background sync, user pressing a button or a change in another part of the UI. The data can arrive at any given time and any number of times.<br>In RxJava we can use a continuous subscription to establish the stream of data. This means the subscription for incoming data is not disconnected until the view is hidden and it never errors or completes.<br>Errors in fetching the data are handled through other mechanisms, as explained in the fetch section.</p>
-<p>Store<br>Store is a container that allows subscribing to data of a particular type. Whenever data of the requested type becomes available, a new immutable value is pushed as onNext to all applicable subscribers.<br>The concrete backing of a Store can be a static in-memory hash, plain SQLite or a content provider. In case the same data is to be used from multiple processes there needs to be a mechanism that detects changes in the persisted data and propagates them to all subscribers. Android content providers, of course, do this automatically, making them the perfect candidates.<br>For caching purposes it is usually good to include timestamps into the structure of the Store. Determining when to update the data is not conceptually a concern of the Store, though, it simply holds the data.<br>In this example project the Stores are backed by SQLite ContentProviders, which serialize the values as JSON strings with an id column for queries. This could be optimized by adding columns for all fields of the POJO, but on the other hand it adds boilerplate code that has to be maintained. In case of performance problems the implementation can be changed without affecting the rest of the application.</p>
+<p>但我觉得很不爽的是，这里的view太厚了。在Android开发中，Activity和Fragment并不是标准MVC模式中的Controller或者View。它首先是要加载应用的布局和初始化用户界面，还要接受并且响应来自用户甚至系统的请求。随着用户界面和业务逻辑的复杂度不断提高，他们的职责也随之增加，于是各种代码不断的被添加进去，最后变得臃肿不堪。</p>
+<p>于是，我们就想把其中复杂的逻辑处理移到另外一个类Presenter中，Activity或者Fragment就是单纯的View，只负责界面显示工作；他们不至于与Model交互。View与Model的交互是通过Presenter间接进行的，通常用接口实现。<br>MVP就是这样产生了。<br><img src="http://konmik.github.io/images/mvp_mvp.png" alt=""><br>其好处是duang duang的：<br>－ 降低藕合度<br>－ 利于测试驱动<br>－ 代码复用</p>
+<p>回到开头说的RhymeCity这个例子，作者使用了 Dagger的scoped graph把Presenter注入到Fragment(MVP中的V)。Fragment实现了一个View接口，他的方法会被Presenter所调用。而Presenter通过发送事件到Otto总线来请求数据。<br>最后，这个方案是参考了<a href="http://www.mdswanson.com/blog/2014/04/07/durable-android-rest-clients.html" target="_blank" rel="external">Durable Android REST Clients</a></p>
 
       
     </div>
@@ -396,7 +274,7 @@ Reference Architecture for Android using RxJ">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Android框架" data-title="Android框架" data-url="http://yoursite.com/2015/05/31/Android框架/"></div>
+	<div class="ds-thread" data-thread-key="Android框架" data-title="MVP on Android" data-url="http://yoursite.com/2015/05/31/Android框架/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
